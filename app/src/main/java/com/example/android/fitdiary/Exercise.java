@@ -1,3 +1,5 @@
+package com.example.android.fitdiary;
+
 public class Exercise {
     private String name;
     private int sets;

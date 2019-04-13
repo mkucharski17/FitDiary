@@ -28,16 +28,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Find the View that shows the register category
-        final TextView start = findViewById(R.id.signIn);
+        TextView calendar = findViewById(R.id.signIn);
 
-        start.setOnClickListener(new View.OnClickListener() {
+        calendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create a new intent to open the {@link RegisterActivity }
-                Intent startIntent = new Intent(MainActivity.this, Start.class);
+                // Create a new intent to open the {@link CalendarActivity }
+                Intent calendarIntent = new Intent(MainActivity.this, Calendar.class);
 
                 //start new activity
-                startActivity(startIntent);
+                startActivity(calendarIntent);
             }
         });
 

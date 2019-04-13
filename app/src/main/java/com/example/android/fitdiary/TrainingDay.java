@@ -1,3 +1,5 @@
+package com.example.android.fitdiary;
+
 import java.time.LocalDate;
 import java.util.List;
 
