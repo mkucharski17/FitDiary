@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class TrainingDay {
-    private LocalDate date;
+    private String date;
     private List<Training> workouts;
 
     public List<Training> getWorkouts() {
@@ -15,16 +15,16 @@ public class TrainingDay {
         this.workouts = workouts;
     }
 
-    public TrainingDay(LocalDate date, List<Training> workouts) {
+    public TrainingDay(String date, List<Training> workouts) {
         this.date = date;
         this.workouts = workouts;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }
