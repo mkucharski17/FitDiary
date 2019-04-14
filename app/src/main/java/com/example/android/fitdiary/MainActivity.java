@@ -7,11 +7,14 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    private Calendar calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        calendar = new Calendar();
 
         // Find the View that shows the register category
         TextView register = findViewById(R.id.register);
@@ -42,7 +45,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
     }
 
-
+    public Calendar getCalendar() {
+        return calendar;
+    }
 }
