@@ -13,11 +13,13 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Calendar extends AppCompatActivity implements AddDateFragment.CallBack {
+public class Calendar extends AppCompatActivity implements AddDateFragment.CallBack, Serializable {
+
     private ArrayList<String> dates;
     private FrameLayout container;
     private ListView listView;
@@ -61,11 +63,19 @@ public class Calendar extends AppCompatActivity implements AddDateFragment.CallB
     public void openFragment(){
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("dupa", this);
         AddDateFragment fragment = new AddDateFragment();
+        fragment.setArguments(bundle);
         transaction.add(R.id.container,fragment);
         transaction.commit();
-
-
     }
 
+    @Override
+    public void onCallBack(String s){
+        dates.add(s);
+        View b = findViewById(R.id.add);
+        b.setVisibility(View.VISIBLE);
+        adapter.notifyDataSetChanged();
+    }
 }
