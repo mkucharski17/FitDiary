@@ -1,7 +1,5 @@
 package com.example.android.fitdiary;
 
-import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -11,26 +9,22 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
-public class Calendar extends AppCompatActivity implements AddDateFragment.CallBack, Serializable {
+public class DaysListActivity extends AppCompatActivity implements AddDateFragment.CallBack, Serializable {
 
     private ArrayList<String> dates;
     private FrameLayout container;
     private ListView listView;
     private ArrayAdapter<String> adapter;
-
     private Button addTrainingDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
+        setContentView(R.layout.activity_days_list);
 
         dates = new ArrayList<>();
         listView =  findViewById(R.id.list);
@@ -38,15 +32,6 @@ public class Calendar extends AppCompatActivity implements AddDateFragment.CallB
         listView.setAdapter(adapter);
         addTrainingDay = findViewById(R.id.add);
         container = findViewById(R.id.container);
-
-        dates.add("duap");
-        dates.add("duap");
-        dates.add("duap");
-        dates.add("duap");
-        dates.add("duap");
-        dates.add("duap");
-
-
 
         addTrainingDay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,19 +41,18 @@ public class Calendar extends AppCompatActivity implements AddDateFragment.CallB
                 openFragment();
             }
         });
-
-
     }
 
     public void openFragment(){
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Bundle bundle = new Bundle();
-        bundle.putSerializable("dupa", this);
+        bundle.putSerializable("bundle", this);
         AddDateFragment fragment = new AddDateFragment();
         fragment.setArguments(bundle);
         transaction.add(R.id.container,fragment);
         transaction.commit();
+        transaction.addToBackStack(null);
     }
 
     @Override
