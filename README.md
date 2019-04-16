@@ -2,8 +2,8 @@
 
 Projekt z przemdiotu Porjektowanie zdarzeniowe
 
-	Docelowo projekt ma służyć jako aplikacja ułatwiająca osobom aktywnym monitorować swojej aktywności fizyczne oraz
-  poczynań dietetycznych realizując takie funkcjonalności jak
+Docelowo projekt ma służyć jako aplikacja ułatwiająca osobom aktywnym monitorować swojej aktywności fizyczne oraz
+poczynań dietetycznych realizując takie funkcjonalności jak
 
 1.	Tworzenie list własnych ćwiczeń, grupowanie ich w treningi  oraz dodawanie ich do listy treningów, 
     która przypisywana będzie każdemu użytkownikowi
