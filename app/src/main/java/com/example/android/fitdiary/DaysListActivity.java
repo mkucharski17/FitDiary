@@ -1,5 +1,6 @@
 package com.example.android.fitdiary;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,6 +26,7 @@ public class DaysListActivity extends AppCompatActivity implements AddDateFragme
     private ListView listView;
     private ArrayAdapter<String> adapter;
     private Button addTrainingDay;
+    DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +64,8 @@ public class DaysListActivity extends AppCompatActivity implements AddDateFragme
 
     @Override
     public void onCallBack(String s){
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("dates").child("data").setValue(s);
         dates.add(s);
         View b = findViewById(R.id.add);
         b.setVisibility(View.VISIBLE);
