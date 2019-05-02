@@ -1,8 +1,16 @@
 package com.example.android.fitdiary;
 
+import com.example.android.fitdiary.Day.DietDay;
+import com.example.android.fitdiary.Day.TrainingDay;
+
+import java.util.ArrayList;
+
 public class User {
+    private String Login;
     private String Email;
     private String Password;
+    private ArrayList<TrainingDay> trainingDays;
+    private ArrayList<DietDay> dietDays;
 
 
     public String getPassword() {

@@ -26,5 +26,8 @@ public class TrainingDay extends Day {
         workouts = new ArrayList<>();
     }
 
+    public void addTraining(Workout workout){
+        workouts.add(workout);
+    }
 
 }
