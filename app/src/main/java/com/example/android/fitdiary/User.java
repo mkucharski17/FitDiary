@@ -29,12 +29,24 @@ public class User {
         Email = email;
     }
 
+    public String getLogin() {
+        return Login;
+    }
+
+    public void setLogin(String login) {
+        Login = login;
+    }
+
+
     public User() {
     }
+
 
     public User(String email, String password) {
         Email = email;
         Password = password;
+        trainingDays = new ArrayList<>();
+        dietDays = new ArrayList<>();
     }
 }
 
