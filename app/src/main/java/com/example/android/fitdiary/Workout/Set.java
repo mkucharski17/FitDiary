@@ -1,4 +1,4 @@
-package com.example.android.fitdiary;
+package com.example.android.fitdiary.Workout;
 
 public class Set {
     int reps;

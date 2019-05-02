@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.android.fitdiary.Day.DaysListActivity;
+
 public class ChooseActivity extends AppCompatActivity {
     TextView diet;
     TextView workout;

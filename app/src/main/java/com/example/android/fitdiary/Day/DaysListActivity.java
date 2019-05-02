@@ -1,6 +1,6 @@
-package com.example.android.fitdiary;
+package com.example.android.fitdiary.Day;
 
-import android.support.annotation.NonNull;
+
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -10,41 +10,39 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
+
+import com.example.android.fitdiary.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
-public class DaysListActivity extends AppCompatActivity implements AddDateFragment.CallBack, Serializable {
+public class DaysListActivity extends AppCompatActivity implements AddDayFragment.CallBack, Serializable, DaysListPresenter.IView{
 
-    private ArrayList<String> dates;
+    private DaysListPresenter presenter;
     private FrameLayout container;
     private ListView listView;
-    private ArrayAdapter<String> adapter;
-    private Button addTrainingDay;
-    DatabaseReference mDatabase;
+    private ArrayAdapter<Day> adapter;
+    private Button addDay;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_days_list);
 
-        dates = new ArrayList<>();
+        presenter = new DaysListPresenter(this);
         listView =  findViewById(R.id.list);
-        adapter = new ArrayAdapter<>(this,R.layout.list_item,dates);
+        adapter = new ArrayAdapter<>(this,R.layout.list_item,presenter.getDaysList());
         listView.setAdapter(adapter);
-        addTrainingDay = findViewById(R.id.add);
+        addDay = findViewById(R.id.add);
         container = findViewById(R.id.container);
 
-        addTrainingDay.setOnClickListener(new View.OnClickListener() {
+        addDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View b = findViewById(R.id.add);
-                b.setVisibility(View.GONE);
+                showButton();
                 openFragment();
             }
         });
@@ -55,7 +53,7 @@ public class DaysListActivity extends AppCompatActivity implements AddDateFragme
         FragmentTransaction transaction = manager.beginTransaction();
         Bundle bundle = new Bundle();
         bundle.putSerializable("bundle", this);
-        AddDateFragment fragment = new AddDateFragment();
+        AddDayFragment fragment = new AddDayFragment();
         fragment.setArguments(bundle);
         transaction.add(R.id.container,fragment);
         transaction.commit();
@@ -64,11 +62,18 @@ public class DaysListActivity extends AppCompatActivity implements AddDateFragme
 
     @Override
     public void onCallBack(String s){
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("dates").child("data").setValue(s);
-        dates.add(s);
-        View b = findViewById(R.id.add);
-        b.setVisibility(View.VISIBLE);
+        presenter.addDay(s);
+        hideButton();
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void hideButton() {
+        addDay.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showButton() {
+        addDay.setVisibility(View.GONE);
     }
 }
