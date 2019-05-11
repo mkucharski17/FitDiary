@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "477553677233",
+    "firebase_url": "https://fitdiary-24d19.firebaseio.com",
+    "project_id": "fitdiary-24d19",
+    "storage_bucket": "fitdiary-24d19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477553677233:android:8c3543d360134b62",
+        "android_client_info": {
+          "package_name": "com.example.android.fitdiary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "477553677233-34b07sf3kqkq4sn7kiiq80qr8klcgsul.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.fitdiary",
+            "certificate_hash": "5676e0ba5b2da9240d368ac21c7e53893a5e4dc9"
+          }
+        },
+        {
+          "client_id": "477553677233-2eo5ap41rgc7at1qfpm07ebu6bk1pge4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWRgvDVtVIOONWz6SFbzUZmDYC8JppGy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "477553677233-2eo5ap41rgc7at1qfpm07ebu6bk1pge4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
