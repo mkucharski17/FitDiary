@@ -13,8 +13,7 @@ import android.widget.ListView;
 
 
 import com.example.android.fitdiary.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 
 import java.io.Serializable;
 
