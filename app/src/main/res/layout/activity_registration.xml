@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Registration"
+    tools:context=".RegistrationActivity"
     android:orientation="vertical">
 
     <TextView
@@ -15,6 +15,7 @@
         android:textColor="#000000"/>
 
     <EditText
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"/>
@@ -27,9 +28,10 @@
         android:textColor="#000000"/>
 
     <EditText
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"/>
+        android:inputType="textEmailAddress"/>
 
     <TextView
         android:textSize="16sp"
@@ -39,12 +41,13 @@
         android:textColor="#000000"/>
 
     <EditText
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"/>
+        android:inputType="textPassword"/>
 
     <Button
-        android:id="@+id/signIn"
+        android:id="@+id/createAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
