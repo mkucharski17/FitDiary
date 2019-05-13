@@ -1,4 +1,4 @@
-package com.example.android.fitdiary.Workout;
+package com.example.android.fitdiary.Day.TrainingDay;
 
 import java.util.List;
 

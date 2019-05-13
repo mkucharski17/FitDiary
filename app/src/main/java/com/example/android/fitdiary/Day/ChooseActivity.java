@@ -1,4 +1,4 @@
-package com.example.android.fitdiary;
+package com.example.android.fitdiary.Day;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.android.fitdiary.Day.DaysListActivity;
+import com.example.android.fitdiary.R;
 
 public class ChooseActivity extends AppCompatActivity {
-    TextView diet;
-    TextView workout;
+    private TextView diet;
+    private TextView workout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

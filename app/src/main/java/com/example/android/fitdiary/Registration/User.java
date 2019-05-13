@@ -1,7 +1,7 @@
-package com.example.android.fitdiary;
+package com.example.android.fitdiary.Registration;
 
-import com.example.android.fitdiary.Day.DietDay;
-import com.example.android.fitdiary.Day.TrainingDay;
+import com.example.android.fitdiary.Day.DietDay.DietDay;
+import com.example.android.fitdiary.Day.TrainingDay.TrainingDay;
 
 import java.util.ArrayList;
 
@@ -42,11 +42,10 @@ public class User {
     }
 
 
-    public User(String email, String password) {
+    public User(String email, String password ,String login) {
         Email = email;
         Password = password;
-        trainingDays = new ArrayList<>();
-        dietDays = new ArrayList<>();
+        Login = login ;
     }
 }
 

@@ -6,15 +6,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-
-
 import com.example.android.fitdiary.R;
-
-
 import java.io.Serializable;
 
 public class DaysListActivity extends AppCompatActivity implements AddDayFragment.CallBack, Serializable, DaysListPresenter.IView{
@@ -38,11 +35,22 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
         addDay = findViewById(R.id.add);
         container = findViewById(R.id.container);
 
+
         addDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showButton();
                 openFragment();
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = (String) parent.getItemAtPosition(position);
+
+
+
             }
         });
     }

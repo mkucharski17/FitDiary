@@ -1,11 +1,11 @@
-package com.example.android.fitdiary.Day;
+package com.example.android.fitdiary.Day.DietDay;
 
-import com.example.android.fitdiary.Food;
+import com.example.android.fitdiary.Day.Day;
 
 import java.util.ArrayList;
 
 public class DietDay extends Day {
-    ArrayList<Food> food;
+    private ArrayList<Food> food;
 
     public ArrayList<Food> getFood() {
         return food;

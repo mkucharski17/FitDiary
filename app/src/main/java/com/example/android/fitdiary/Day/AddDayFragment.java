@@ -17,7 +17,7 @@ import com.example.android.fitdiary.R;
  * A simple {@link Fragment} subclass.
  */
 public class AddDayFragment extends Fragment implements AddDayPresenter.IView {
-    AddDayPresenter presenter;
+    private AddDayPresenter presenter;
     private CallBack click;
     private CalendarView date;
     private Button ok;

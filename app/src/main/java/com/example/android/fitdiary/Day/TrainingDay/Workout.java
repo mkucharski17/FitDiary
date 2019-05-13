@@ -1,9 +1,9 @@
-package com.example.android.fitdiary.Workout;
+package com.example.android.fitdiary.Day.TrainingDay;
 
 import java.util.List;
 
 public class Workout {
-    List<Exercise> exercises;
+    private List<Exercise> exercises;
 
     public Workout(List<Exercise> exercises) {
         this.exercises = exercises;

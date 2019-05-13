@@ -1,4 +1,4 @@
-package com.example.android.fitdiary;
+package com.example.android.fitdiary.Day.DietDay;
 
 public class MacroComponents {
 

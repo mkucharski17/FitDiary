@@ -1,6 +1,6 @@
-package com.example.android.fitdiary.Day;
+package com.example.android.fitdiary.Day.TrainingDay;
 
-import com.example.android.fitdiary.Workout.Workout;
+import com.example.android.fitdiary.Day.Day;
 
 import java.util.ArrayList;
 import java.util.List;
