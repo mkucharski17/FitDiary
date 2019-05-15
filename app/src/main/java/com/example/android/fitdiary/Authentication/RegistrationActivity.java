@@ -1,4 +1,4 @@
-package com.example.android.fitdiary.Registration;
+package com.example.android.fitdiary.Authentication;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,12 +11,11 @@ import android.widget.Toast;
 import com.example.android.fitdiary.MainActivity;
 import com.example.android.fitdiary.R;
 
-public class RegistrationActivity extends AppCompatActivity implements RegistrationPresenter.IView {
+public class RegistrationActivity extends AppCompatActivity implements AuthenticationPresenter.IView {
     private EditText email;
     private EditText password;
-    private EditText login;
     private Button createAccount;
-    private RegistrationPresenter presenter;
+    private AuthenticationPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,17 +24,18 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        login = findViewById(R.id.login);
         createAccount = findViewById(R.id.createAccount);
 
-        presenter = new RegistrationPresenter(this);
+        presenter = new AuthenticationPresenter(this);
 
 
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.registerUser(email.getText().toString(), password.getText().toString() , login.getText().toString() );
-                savedSuccesfull();
+                presenter.registerUser(email.getText().toString(), password.getText().toString());
+                signingSuccesfull();
+
+
                 Intent mainIntent = new Intent(RegistrationActivity.this, MainActivity.class);
                 startActivity(mainIntent);
             }
@@ -43,7 +43,9 @@ public class RegistrationActivity extends AppCompatActivity implements Registrat
     }
 
     @Override
-    public void savedSuccesfull(){
+    public void signingSuccesfull(){
         Toast.makeText(getApplicationContext(),"user saved", Toast.LENGTH_LONG).show();
     }
+
+
 }

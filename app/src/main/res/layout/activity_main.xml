@@ -26,14 +26,15 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login"
+            android:text="@string/email"
             android:textColor="#000000"
             android:textSize="16sp" />
 
         <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text" />
+            android:inputType="textEmailAddress" />
 
         <TextView
             android:layout_width="match_parent"
@@ -43,9 +44,10 @@
             android:textSize="16sp" />
 
         <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text" />
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/signIn"

@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".Day.DaysListActivity" />
         <activity
-            android:name=".Registration.RegistrationActivity"
+            android:name=".Authentication.RegistrationActivity"
             android:label="Registration" />
     </application>
 
