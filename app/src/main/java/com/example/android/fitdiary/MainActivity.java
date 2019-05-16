@@ -1,18 +1,24 @@
 package com.example.android.fitdiary;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.android.fitdiary.Authentication.AuthenticationPresenter;
-import com.example.android.fitdiary.Day.ChooseActivity;
 import com.example.android.fitdiary.Authentication.RegistrationActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class MainActivity extends AppCompatActivity implements AuthenticationPresenter.IView {
+    public static final String TAG = MainActivity.class.getSimpleName();
     private Button register;
     private Button signIn;
     private EditText email;
@@ -45,7 +51,19 @@ public class MainActivity extends AppCompatActivity implements AuthenticationPre
             @Override
             public void onClick(View v) {
 
-                presenter.signInUser(email.getText().toString(),password.getText().toString());
+                presenter.signInUser(email.getText().toString(),password.getText().toString())
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });;
                 signingSuccesfull();
                 Intent chooseIntent = new Intent(MainActivity.this, ChooseActivity.class);
                 startActivity(chooseIntent);

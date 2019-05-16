@@ -1,4 +1,4 @@
-package com.example.android.fitdiary.Day;
+package com.example.android.fitdiary;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.android.fitdiary.R;
+import com.example.android.fitdiary.Day.DaysListActivity;
 
 public class ChooseActivity extends AppCompatActivity {
     private TextView diet;

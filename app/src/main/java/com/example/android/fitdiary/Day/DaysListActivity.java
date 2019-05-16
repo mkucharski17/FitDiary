@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.example.android.fitdiary.R;
 import java.io.Serializable;
 
@@ -69,6 +71,7 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
 
     @Override
     public void onCallBack(String s){
+        Toast.makeText(getApplicationContext(),"user saved", Toast.LENGTH_LONG).show();
         presenter.addDay(s);
         hideButton();
         adapter.notifyDataSetChanged();
