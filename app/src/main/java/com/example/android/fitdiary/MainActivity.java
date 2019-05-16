@@ -16,11 +16,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class MainActivity extends AppCompatActivity implements AuthenticationPresenter.IView {
-    public static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = "MainActivity";
     private Button register;
     private Button signIn;
     private EditText email;
@@ -60,12 +58,20 @@ public class MainActivity extends AppCompatActivity implements AuthenticationPre
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "createUserWithEmail:success");
+
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
+
                                 }
+
                             }
                         });
+                signingSuccesfull();
+                Intent chooseIntent = new Intent(MainActivity.this, ChooseActivity.class);
+                startActivity(chooseIntent);
+            }
+        });
     }
 
     public void signingSuccesfull(){
