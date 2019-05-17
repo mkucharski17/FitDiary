@@ -1,6 +1,7 @@
 package com.example.android.fitdiary.Authentication;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -47,20 +48,8 @@ public class RegistrationActivity extends AppCompatActivity implements SigningPr
             @Override
             public void onClick(View v) {
                 presenter.signUp(email.getText().toString(), password.getText().toString());
-                checkData();
             }
         });
-    }
-
-    @Override
-    public void checkData() {
-        if (presenter.getValidate()) {
-            signingSuccessful();
-            Intent chooseIntent = new Intent(RegistrationActivity.this, MainActivity.class);
-            startActivity(chooseIntent);
-        } else {
-            signingFailure();
-        }
     }
 
     @Override
@@ -70,8 +59,11 @@ public class RegistrationActivity extends AppCompatActivity implements SigningPr
 
     @Override
     public void signingFailure() {
-        Toast.makeText(getApplicationContext(), "Signing up failed, try again"+ presenter.getValidate(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Signing up failed, try again", Toast.LENGTH_LONG).show();
     }
 
-
+    public void runIntent(){
+        Intent mainIntent = new Intent(RegistrationActivity.this, MainActivity.class);
+        startActivity(mainIntent);
+    }
 }

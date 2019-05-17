@@ -1,10 +1,8 @@
 package com.example.android.fitdiary;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,22 +63,13 @@ public class MainActivity extends AppCompatActivity implements SigningPresenter.
             @Override
             public void onClick(View v) {
                 presenter.signIn(email.getText().toString(), password.getText().toString());
-                checkData();
             }
         });
-
     }
 
-    @Override
-    public void checkData() {
-        if (presenter.getValidate()) {
-            signingSuccessful();
-            Intent chooseIntent = new Intent(MainActivity.this, ChooseActivity.class);
-            startActivity(chooseIntent);
-        } else {
-            signingFailure();
-        }
 
+    public void runIntent(){
+        Intent chooseIntent = new Intent(MainActivity.this, ChooseActivity.class);
+        startActivity(chooseIntent);
     }
-
 }
