@@ -2,7 +2,7 @@ package com.example.android.fitdiary;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class Saver {
+public class  Saver {
 
     private FirebaseFirestore database;
 

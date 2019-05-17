@@ -17,7 +17,25 @@ public class ChooseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
 
+        loadViews();
+        setListeners();
+
+    }
+
+    private void loadViews(){
         diet = findViewById(R.id.diet);
+        workout = findViewById(R.id.workout);
+    }
+
+    private void setListeners(){
+        workout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent workoutIntent = new Intent(ChooseActivity.this, DaysListActivity.class);
+                startActivity(workoutIntent);
+            }
+        });
 
         diet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,15 +46,5 @@ public class ChooseActivity extends AppCompatActivity {
             }
         });
 
-        workout = findViewById(R.id.workout);
-
-        workout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent workoutIntent = new Intent(ChooseActivity.this, DaysListActivity.class);
-                startActivity(workoutIntent);
-            }
-        });
     }
 }

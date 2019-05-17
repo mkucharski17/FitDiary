@@ -31,26 +31,14 @@ public class MainActivity extends AppCompatActivity implements SigningPresenter.
 
     }
 
-    @Override
-    public void signingFailure() {
-        Toast.makeText(getApplicationContext(), "Signing in failed, try again", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void signingSuccessful() {
-        Toast.makeText(getApplicationContext(), "Signing in successful", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void loadViews() {
+    private void loadViews() {
         password = findViewById(R.id.password);
         email = findViewById(R.id.email);
         register = findViewById(R.id.register);
         signIn = findViewById(R.id.signIn);
     }
 
-    @Override
-    public void setListeners() {
+    private void setListeners() {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,12 +51,23 @@ public class MainActivity extends AppCompatActivity implements SigningPresenter.
             @Override
             public void onClick(View v) {
                 presenter.signIn(email.getText().toString(), password.getText().toString());
+                signingSuccessful();
             }
         });
     }
 
+    @Override
+    public void signingFailure() {
+        Toast.makeText(getApplicationContext(), "Signing in failed, try again", Toast.LENGTH_LONG).show();
+    }
 
-    public void runIntent(){
+    @Override
+    public void signingSuccessful() {
+        Toast.makeText(getApplicationContext(), "Signing in successful", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void runIntent() {
         Intent chooseIntent = new Intent(MainActivity.this, ChooseActivity.class);
         startActivity(chooseIntent);
     }

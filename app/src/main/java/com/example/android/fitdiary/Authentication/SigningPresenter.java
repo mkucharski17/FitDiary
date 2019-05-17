@@ -60,8 +60,6 @@ public class SigningPresenter {
 
 
     public interface IView{
-        void loadViews();
-        void setListeners();
         void signingSuccessful();
         void signingFailure();
         void runIntent();

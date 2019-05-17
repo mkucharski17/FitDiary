@@ -29,15 +29,21 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_days_list);
-
         presenter = new DaysListPresenter(this);
+
+        loadViews();
+        setListeners();
+    }
+
+    private void loadViews(){
         listView =  findViewById(R.id.list);
         adapter = new ArrayAdapter<>(this,R.layout.list_item,presenter.getDaysList());
         listView.setAdapter(adapter);
         addDay = findViewById(R.id.add);
         container = findViewById(R.id.container);
+    }
 
-
+    private void setListeners(){
         addDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,13 +57,11 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = (String) parent.getItemAtPosition(position);
 
-
-
             }
         });
-    }
 
-    public void openFragment(){
+    }
+    private void openFragment(){
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Bundle bundle = new Bundle();
@@ -71,7 +75,6 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
 
     @Override
     public void onCallBack(String s){
-        Toast.makeText(getApplicationContext(),"user saved", Toast.LENGTH_LONG).show();
         presenter.addDay(s);
         hideButton();
         adapter.notifyDataSetChanged();

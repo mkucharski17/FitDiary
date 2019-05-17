@@ -1,6 +1,6 @@
 package com.example.android.fitdiary.Day;
 
-import com.example.android.fitdiary.Day.Day;
+
 
 public class AddDayPresenter {
     private Day day;

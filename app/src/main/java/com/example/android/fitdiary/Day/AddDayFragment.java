@@ -32,10 +32,13 @@ public class AddDayFragment extends Fragment implements AddDayPresenter.IView {
                              Bundle savedInstanceState) {
         click = (CallBack) getArguments().getSerializable("bundle");
         View v = inflater.inflate(R.layout.fragment_add_date, container, false);
-        date = v.findViewById(R.id.calendar);
-        ok = v.findViewById(R.id.ok);
         presenter = new AddDayPresenter(this);
 
+        return v;
+    }
+
+
+    private void setListeners(){
         date.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -52,10 +55,8 @@ public class AddDayFragment extends Fragment implements AddDayPresenter.IView {
                 close();
             }
         });
-        return v;
     }
-
-    public void close() {
+    private void close() {
         FragmentManager manager = getFragmentManager();
         manager.popBackStack();
     }
