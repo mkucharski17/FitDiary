@@ -1,6 +1,6 @@
 package com.example.android.fitdiary.Day;
 
-import com.example.android.fitdiary.Dao;
+import com.example.android.fitdiary.Saver;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class DaysListPresenter {
     private ArrayList<Day> DaysList;
     private IView iview;
-    private Dao dao;
+    private Saver dao;
 
     public DaysListPresenter(IView iview) {
         DaysList = new ArrayList<>();

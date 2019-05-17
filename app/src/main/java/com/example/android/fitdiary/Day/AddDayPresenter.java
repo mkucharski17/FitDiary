@@ -6,12 +6,12 @@ public class AddDayPresenter {
     private Day day;
     private IView iView;
 
-    public AddDayPresenter(IView iView){
+    public AddDayPresenter(IView iView) {
         this.day = new Day();
         this.iView = iView;
     }
 
-    public void updateDate(String date){
+    public void updateDate(String date) {
         day.setDate(date);
     }
 
@@ -19,7 +19,7 @@ public class AddDayPresenter {
         return day;
     }
 
-    public interface IView{
+    public interface IView {
 
     }
 }

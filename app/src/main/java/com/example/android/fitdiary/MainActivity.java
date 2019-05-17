@@ -10,72 +10,77 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.android.fitdiary.Authentication.AuthenticationPresenter;
+import com.example.android.fitdiary.Authentication.SigningPresenter;
 import com.example.android.fitdiary.Authentication.RegistrationActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity implements AuthenticationPresenter.IView {
-    private static final String TAG = "MainActivity";
+public class MainActivity extends AppCompatActivity implements SigningPresenter.IView {
     private Button register;
     private Button signIn;
     private EditText email;
     private EditText password;
-    private AuthenticationPresenter presenter;
+    private SigningPresenter presenter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        presenter = new AuthenticationPresenter(this);
+        presenter = new SigningPresenter(this);
 
+        loadViews();
+        setListeners();
+
+
+    }
+
+    @Override
+    public void signingFailure() {
+        Toast.makeText(getApplicationContext(), "Signing in failed, try again", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void signingSuccessful() {
+        Toast.makeText(getApplicationContext(), "Signing in successful", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void loadViews() {
         password = findViewById(R.id.password);
         email = findViewById(R.id.email);
-
         register = findViewById(R.id.register);
+        signIn = findViewById(R.id.signIn);
+    }
 
+    @Override
+    public void setListeners() {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent registerIntent = new Intent(MainActivity.this, RegistrationActivity.class);
                 startActivity(registerIntent);
             }
         });
-        signIn= findViewById(R.id.signIn);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                presenter.signInUser(email.getText().toString(),password.getText().toString())
-                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Log.d(TAG, "createUserWithEmail:success");
-
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
-
-                                }
-
-                            }
-                        });
-                signingSuccesfull();
-                Intent chooseIntent = new Intent(MainActivity.this, ChooseActivity.class);
-                startActivity(chooseIntent);
+                presenter.signIn(email.getText().toString(), password.getText().toString());
+                checkData();
             }
         });
+
     }
 
-    public void signingSuccesfull(){
-        Toast.makeText(getApplicationContext(),"Welcome", Toast.LENGTH_LONG).show();
+    @Override
+    public void checkData() {
+        if (presenter.getValidate()) {
+            signingSuccessful();
+            Intent chooseIntent = new Intent(MainActivity.this, ChooseActivity.class);
+            startActivity(chooseIntent);
+        } else {
+            signingFailure();
+        }
+
     }
 
 }
