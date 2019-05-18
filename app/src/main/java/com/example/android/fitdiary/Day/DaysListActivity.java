@@ -23,6 +23,7 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
     private ListView listView;
     private ArrayAdapter<Day> adapter;
     private Button addDay;
+    private Button save;
 
 
     @Override
@@ -45,6 +46,7 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
         adapter = new ArrayAdapter<>(this,R.layout.list_item,presenter.getDaysList());
         listView.setAdapter(adapter);
         addDay = findViewById(R.id.add);
+        save = findViewById(R.id.save);
         container = findViewById(R.id.container);
     }
 
@@ -52,8 +54,15 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
         addDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showButton();
+                hideButtons();
                 openFragment();
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.save();
             }
         });
 
@@ -80,17 +89,29 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
     @Override
     public void onCallBack(String s){
         presenter.addDay(s);
-        hideButton();
+        showButtons();
         adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void hideButton() {
+    public void showButtons() {
         addDay.setVisibility(View.VISIBLE);
+        save.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void showButton() {
+    public void hideButtons() {
         addDay.setVisibility(View.GONE);
+        save.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void savingSuccessful() {
+        Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void savingFailure() {
+        Toast.makeText(getApplicationContext(), "Error, try again", Toast.LENGTH_LONG).show();
     }
 }

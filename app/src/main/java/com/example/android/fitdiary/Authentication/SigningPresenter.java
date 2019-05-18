@@ -4,16 +4,22 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.android.fitdiary.Dao;
 import com.example.android.fitdiary.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+
 import static android.support.constraint.Constraints.TAG;
 
 public class SigningPresenter {
     private FirebaseAuth mAuth;
     private IView iview;
+    private Dao dao;
 
 
     public SigningPresenter(IView iview) {
@@ -57,6 +63,7 @@ public class SigningPresenter {
                     }
                 });
     }
+
 
 
     public interface IView{

@@ -2,17 +2,14 @@ package com.example.android.fitdiary;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class  Saver {
+public class Dao {
+    FirebaseFirestore database;
 
-    private FirebaseFirestore database;
-
-    public Saver() {
+    public Dao() {
         database = FirebaseFirestore.getInstance();
     }
 
-
-    public void save(String collection, Object object) {
+    public FirebaseFirestore getDatabase() {
+        return database;
     }
-
-
 }
