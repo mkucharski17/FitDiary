@@ -17,4 +17,9 @@ public class Day {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public String toString(){
+        return date;
+    }
+
 }

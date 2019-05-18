@@ -32,7 +32,10 @@ public class AddDayFragment extends Fragment implements AddDayPresenter.IView {
                              Bundle savedInstanceState) {
         click = (CallBack) getArguments().getSerializable("bundle");
         View v = inflater.inflate(R.layout.fragment_add_date, container, false);
+        date = v.findViewById(R.id.calendar);
+        ok = v.findViewById(R.id.ok);
         presenter = new AddDayPresenter(this);
+        setListeners();
 
         return v;
     }
@@ -55,6 +58,7 @@ public class AddDayFragment extends Fragment implements AddDayPresenter.IView {
                 close();
             }
         });
+
     }
     private void close() {
         FragmentManager manager = getFragmentManager();

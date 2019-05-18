@@ -33,7 +33,9 @@ public class ChooseActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent workoutIntent = new Intent(ChooseActivity.this, DaysListActivity.class);
+                workoutIntent.putExtra("type", "workout");
                 startActivity(workoutIntent);
+
             }
         });
 
@@ -42,7 +44,9 @@ public class ChooseActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent dietIntent = new Intent(ChooseActivity.this, DaysListActivity.class);
+                dietIntent.putExtra("type", "diet");
                 startActivity(dietIntent);
+
             }
         });
 

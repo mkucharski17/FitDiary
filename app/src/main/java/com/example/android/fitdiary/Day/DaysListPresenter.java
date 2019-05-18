@@ -1,6 +1,7 @@
 package com.example.android.fitdiary.Day;
 
-import com.example.android.fitdiary.Saver;
+import com.example.android.fitdiary.Day.DietDay.DietDay;
+import com.example.android.fitdiary.Day.TrainingDay.TrainingDay;
 
 import java.util.ArrayList;
 
@@ -8,10 +9,11 @@ import java.util.ArrayList;
 public class DaysListPresenter {
     private ArrayList<Day> DaysList;
     private IView iview;
-    private Saver dao;
+    private String type;
 
-    public DaysListPresenter(IView iview) {
+    public DaysListPresenter(IView iview, String type) {
         DaysList = new ArrayList<>();
+        this.type = type;
         this.iview = iview;
     }
     public ArrayList<Day> getDaysList() {
@@ -19,7 +21,11 @@ public class DaysListPresenter {
     }
 
     public void addDay(String date){
-        Day day = new Day(date);
+        Day day;
+       if(type.equals("diet"))
+         day = new DietDay(date);
+       else
+           day = new TrainingDay(date);
         DaysList.add(day);
     }
 

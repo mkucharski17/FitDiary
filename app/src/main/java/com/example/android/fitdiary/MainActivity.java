@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity implements SigningPresenter.
 
         loadViews();
         setListeners();
-
-
     }
 
     private void loadViews() {
@@ -46,12 +44,10 @@ public class MainActivity extends AppCompatActivity implements SigningPresenter.
                 startActivity(registerIntent);
             }
         });
-
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 presenter.signIn(email.getText().toString(), password.getText().toString());
-                signingSuccessful();
             }
         });
     }

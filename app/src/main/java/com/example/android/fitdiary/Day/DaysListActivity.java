@@ -29,10 +29,15 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_days_list);
-        presenter = new DaysListPresenter(this);
-
+        loadPresenter();
         loadViews();
         setListeners();
+    }
+
+    private void loadPresenter(){
+        Bundle extra = getIntent().getExtras();
+        String type = extra.getString("type");
+        presenter = new DaysListPresenter(this,type);
     }
 
     private void loadViews(){
@@ -56,7 +61,6 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = (String) parent.getItemAtPosition(position);
-
             }
         });
 
