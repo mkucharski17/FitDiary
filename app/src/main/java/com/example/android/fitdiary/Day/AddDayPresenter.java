@@ -1,6 +1,7 @@
 package com.example.android.fitdiary.Day;
 
 
+import java.util.Date;
 
 public class AddDayPresenter {
     private Day day;
@@ -11,7 +12,7 @@ public class AddDayPresenter {
         this.iView = iView;
     }
 
-    public void updateDate(String date) {
+    public void updateDate(Date date) {
         day.setDate(date);
     }
 

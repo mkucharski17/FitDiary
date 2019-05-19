@@ -1,25 +1,31 @@
 package com.example.android.fitdiary.Day;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Day {
-    private String date;
+    private Date date;
 
     public Day() {
     }
 
-    public Day(String date) {
+    public Day(Date date) {
         this.date = date;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
     public String toString(){
-        return date;
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String s = formatter.format(date);
+        return s;
     }
 
 }

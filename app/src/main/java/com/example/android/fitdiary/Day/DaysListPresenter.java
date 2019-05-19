@@ -6,6 +6,7 @@ import android.util.Log;
 import com.example.android.fitdiary.Dao;
 import com.example.android.fitdiary.Day.DietDay.DietDay;
 import com.example.android.fitdiary.Day.TrainingDay.TrainingDay;
+import com.example.android.fitdiary.DaysComparator;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -13,6 +14,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 import static android.support.constraint.Constraints.TAG;
 
@@ -35,20 +40,21 @@ public class DaysListPresenter {
         return DaysList;
     }
 
-    public void addDay(String date){
+    public void addDay(Date date){
         Day day;
        if(type.equals("diet"))
          day = new DietDay(date);
        else
            day = new TrainingDay(date);
         DaysList.add(day);
+        Collections.sort(DaysList,new DaysComparator());
     }
 
     public void save(){
 
         for(int i = 0; i < DaysList.size() ; i++) {
             dao.getDatabase().collection("users")
-                    .document(mAuth.getCurrentUser().getUid()).collection(type)
+                    .document(mAuth.getCurrentUser().getUid()).collection(type + "days")
                     .add(DaysList.get(i))
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override

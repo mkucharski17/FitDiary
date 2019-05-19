@@ -3,6 +3,7 @@ package com.example.android.fitdiary.Day.TrainingDay;
 import com.example.android.fitdiary.Day.Day;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TrainingDay extends Day {
@@ -21,7 +22,7 @@ public class TrainingDay extends Day {
         this.workouts.add(workout);
     }
 
-    public TrainingDay(String date) {
+    public TrainingDay(Date date) {
         super(date);
         workouts = new ArrayList<>();
     }

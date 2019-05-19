@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.android.fitdiary.R;
 import java.io.Serializable;
+import java.util.Date;
 
 public class DaysListActivity extends AppCompatActivity implements AddDayFragment.CallBack, Serializable, DaysListPresenter.IView{
 
@@ -87,8 +88,8 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
     }
 
     @Override
-    public void onCallBack(String s){
-        presenter.addDay(s);
+    public void onCallBack(Date d){
+        presenter.addDay(d);
         showButtons();
         adapter.notifyDataSetChanged();
     }

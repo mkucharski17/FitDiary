@@ -13,6 +13,8 @@ import android.widget.CalendarView;
 
 import com.example.android.fitdiary.R;
 
+import java.util.Date;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -45,7 +47,7 @@ public class AddDayFragment extends Fragment implements AddDayPresenter.IView {
         date.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String selectedDate = dayOfMonth + "." + month + "." + year;
+                Date selectedDate = new Date((year-1900),month,dayOfMonth);
                 presenter.updateDate(selectedDate);
 
             }
@@ -66,7 +68,7 @@ public class AddDayFragment extends Fragment implements AddDayPresenter.IView {
     }
 
     public interface CallBack {
-        void onCallBack(String s);
+        void onCallBack(Date d);
     }
 
 }
