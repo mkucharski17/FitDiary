@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.Toast;
 
 import com.example.android.fitdiary.R;
 
@@ -36,9 +37,8 @@ public class AddDayFragment extends Fragment implements AddDayPresenter.IView {
         View v = inflater.inflate(R.layout.fragment_add_date, container, false);
         date = v.findViewById(R.id.calendar);
         ok = v.findViewById(R.id.ok);
-        presenter = new AddDayPresenter(this);
+        loadPresenter(getArguments().getString("type"));
         setListeners();
-
         return v;
     }
 
@@ -48,7 +48,7 @@ public class AddDayFragment extends Fragment implements AddDayPresenter.IView {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 Date selectedDate = new Date((year-1900),month,dayOfMonth);
-                presenter.updateDate(selectedDate);
+                presenter.createDate(selectedDate);
 
             }
         });
@@ -56,19 +56,34 @@ public class AddDayFragment extends Fragment implements AddDayPresenter.IView {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                click.onCallBack(presenter.getDay().getDate());
+                presenter.save();
+                click.onCallBack(presenter.getDay());
                 close();
             }
         });
 
     }
+
     private void close() {
         FragmentManager manager = getFragmentManager();
         manager.popBackStack();
     }
 
+    private void loadPresenter(String type){
+        presenter = new AddDayPresenter(this,type);
+    }
+
+    @Override
+    public void savingSuccessful() {
+        Toast.makeText(getContext(), "Saved", Toast.LENGTH_LONG).show();
+    }
+    @Override
+    public void savingFailure() {
+        Toast.makeText(getContext(), "Error, try again", Toast.LENGTH_LONG).show();
+    }
+
     public interface CallBack {
-        void onCallBack(Date d);
+        void onCallBack(Day day);
     }
 
 }
