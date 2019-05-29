@@ -10,7 +10,6 @@ import com.example.android.fitdiary.Day.TrainingDay.TrainingDay;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 
 import java.util.Date;
 
@@ -35,42 +34,39 @@ public class AddDayPresenter {
     public void createDate(Date date) {
         if (type.equals("diet"))
             day = new DietDay(date);
-        else
+        else{
             day = new TrainingDay(date);
+        }
+
     }
 
     public void save() {
 
             dao.getDatabase().collection("users")
                     .document(mAuth.getCurrentUser().getUid()).collection(type + "days")
-                    .add(day)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    .document(day.toString())
+                    .set(day)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
-                        public void onSuccess(DocumentReference documentReference) {
-
-                            Log.d(TAG, "Added to list" + documentReference.getId());
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "DocumentSnapshot successfully written!");
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error in adding List", e);
-
+                        Log.w(TAG, "Error writing document", e);
                         }
                     });
 
     }
-
-
 
     public Day getDay() {
         return day;
     }
 
     public interface IView {
-        void savingSuccessful();
 
-        void savingFailure();
     }
 }
 

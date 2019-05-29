@@ -1,6 +1,12 @@
 package com.example.android.fitdiary.Day;
+import android.content.Intent;
+
 import com.example.android.fitdiary.Dao;
+import com.example.android.fitdiary.Day.DietDay.DietDay;
+import com.example.android.fitdiary.Day.DietDay.DietDayActivity;
+import com.example.android.fitdiary.Day.TrainingDay.TrainingDayActivity;
 import com.example.android.fitdiary.DaysComparator;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -38,6 +44,14 @@ public class DaysListPresenter {
         Collections.sort(DaysList, new DaysComparator());
     }
 
+    public Class getDestinationClass(){
+        if(type.equals("diet"))
+            return DietDayActivity.class;
+
+        return TrainingDayActivity.class;
+    }
+
+
     public void read() {
 
         dao.getDatabase().collection("users").document(mAuth.getCurrentUser().getUid())
@@ -54,19 +68,19 @@ public class DaysListPresenter {
                         iview.loadViews();
                         iview.setListeners();
                         Collections.sort(DaysList, new DaysComparator());
-
                     }
                 });
 
     }
 
     public interface IView {
-        void hideButtons();
+        void hideButton();
 
-        void showButtons();
+        void showButton();
 
         void loadViews();
 
         void setListeners();
+
     }
 }

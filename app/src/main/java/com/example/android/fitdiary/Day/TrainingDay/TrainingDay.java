@@ -7,28 +7,26 @@ import java.util.Date;
 import java.util.List;
 
 public class TrainingDay extends Day {
-   private List<Workout> workouts;
+   private List<Exercise> exercises;
 
     public TrainingDay() {
         super();
-        workouts = new ArrayList<>();
+        exercises = new ArrayList<>();
     }
 
-    public List<Workout> getWorkouts() {
-        return workouts;
-    }
-
-    public void addWorkout(Workout workout) {
-        this.workouts.add(workout);
-    }
 
     public TrainingDay(Date date) {
         super(date);
-        workouts = new ArrayList<>();
+        exercises = new ArrayList<>();
     }
 
-    public void addTraining(Workout workout){
-        workouts.add(workout);
+    public List<Exercise> getExercises() {
+        return exercises;
     }
+
+    public void addExercise(Exercise exercise) {
+        this.exercises.add(exercise);
+    }
+
 
 }

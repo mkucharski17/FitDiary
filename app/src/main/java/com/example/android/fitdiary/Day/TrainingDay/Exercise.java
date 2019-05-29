@@ -13,7 +13,8 @@ public class Exercise {
         this.sets = sets;
     }
 
-    public Exercise(List<Set> sets) {
-        this.sets = sets;
+
+    public Exercise() {
     }
+
 }
