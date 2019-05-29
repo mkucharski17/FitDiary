@@ -46,12 +46,10 @@ public class TrainingDayPresenter extends DayPresenter {
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Log.i(TAG, day.toString());
-                Day dday = documentSnapshot.toObject(Day.class);
 
-
-
-
+                day = documentSnapshot.toObject(TrainingDay.class);
+                if(day == null)
+                    Log.i(TAG, day.toString());
 
                 iview.setListeners();
             }

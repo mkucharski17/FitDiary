@@ -73,14 +73,7 @@ public class AddDayFragment extends Fragment implements AddDayPresenter.IView {
         presenter = new AddDayPresenter(this,type);
     }
 
-    @Override
-    public void savingSuccessful() {
-        Toast.makeText(getContext(), "Saved", Toast.LENGTH_LONG).show();
-    }
-    @Override
-    public void savingFailure() {
-        Toast.makeText(getContext(), "Error, try again", Toast.LENGTH_LONG).show();
-    }
+   
 
     public interface CallBack {
         void onCallBack(Day day);

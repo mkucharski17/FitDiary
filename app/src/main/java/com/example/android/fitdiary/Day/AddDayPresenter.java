@@ -34,10 +34,8 @@ public class AddDayPresenter {
     public void createDate(Date date) {
         if (type.equals("diet"))
             day = new DietDay(date);
-        else{
+        else
             day = new TrainingDay(date);
-        }
-
     }
 
     public void save() {
