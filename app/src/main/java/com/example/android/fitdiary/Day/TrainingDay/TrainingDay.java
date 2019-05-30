@@ -14,6 +14,9 @@ public class TrainingDay extends Day {
         exercises = new ArrayList<>();
     }
 
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
+    }
 
     public TrainingDay(Date date) {
         super(date);

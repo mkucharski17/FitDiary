@@ -39,24 +39,27 @@ public class TrainingDayPresenter extends DayPresenter {
 
     public void read() {
 
-        DocumentReference docRef = dao.getDatabase().collection("user")
+        DocumentReference docRef = dao.getDatabase().collection("users")
                 .document(mAuth.getCurrentUser().getUid()).collection("workoutdays")
                 .document(day.toString());
 
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Log.i(TAG, day.toString());
-                Day dday = documentSnapshot.toObject(Day.class);
-
-
-
-
-
-                iview.setListeners();
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        day = document.toObject(TrainingDay.class);
+                        iview.loadAdapter();
+                        iview.setListeners();
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
             }
-
-
         });
     }
 
