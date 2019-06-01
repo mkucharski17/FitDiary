@@ -34,7 +34,7 @@ public class DietDayActivity extends DayActivity implements DietDayPresenter.Ivi
     }
 
 
-    protected void setListeners(){
+    public void setListeners(){
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

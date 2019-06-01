@@ -1,26 +1,22 @@
 package com.example.android.fitdiary.Day.TrainingDay;
 
-import android.content.Intent;
+import android.os.Parcelable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.android.fitdiary.Day.AddDayFragment;
-import com.example.android.fitdiary.Day.Day;
 import com.example.android.fitdiary.Day.DayActivity;
-import com.example.android.fitdiary.MainActivity;
 import com.example.android.fitdiary.R;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TrainingDayActivity extends DayActivity implements TrainingDayPresenter.Iview {
+public class TrainingDayActivity extends DayActivity implements TrainingDayPresenter.Iview, Serializable, FillExerciseFragment.callBack {
     private TrainingDayPresenter presenter;
     private ArrayAdapter<Exercise> adapter;
 
@@ -32,6 +28,7 @@ public class TrainingDayActivity extends DayActivity implements TrainingDayPrese
         Date date = (Date)extra.get("day");
         presenter = new TrainingDayPresenter(this,date);
         presenter.read();
+
     }
 
     public void loadAdapter(){
@@ -43,8 +40,8 @@ public class TrainingDayActivity extends DayActivity implements TrainingDayPrese
             add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    hideButton();
                     openAddFragment();
+                    hideButton();
                 }
             });
     }
@@ -55,10 +52,25 @@ public class TrainingDayActivity extends DayActivity implements TrainingDayPrese
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Bundle bundle = new Bundle();
-        AddTrainingFragment fragment = new AddTrainingFragment();
+        bundle.putSerializable("allExerciseList", (Serializable) presenter.getAllExercisesList());
+        bundle.putSerializable("bundle", this);
+        AddExerciseFragment fragment = new AddExerciseFragment();
         fragment.setArguments(bundle);
         transaction.add(R.id.container,fragment);
-        transaction.commit();
         transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+
+
+    public void showButton(){
+        add.setVisibility(View.VISIBLE);
+    }
+
+    public void OnCallBack(Exercise e){
+        presenter.getDay().addExercise(e);
+        presenter.saveDay();
+        showButton();
+
     }
 }

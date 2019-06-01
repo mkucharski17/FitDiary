@@ -3,7 +3,6 @@ package com.example.android.fitdiary.Day;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 
@@ -25,7 +24,6 @@ public class Day {
     public void setDate(Date date) {
         this.date = date;
     }
-
 
 
     public String toString(){
