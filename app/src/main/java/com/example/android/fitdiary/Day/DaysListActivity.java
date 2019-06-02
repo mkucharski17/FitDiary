@@ -59,6 +59,7 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
 
     public void  loadViews(){
         addDay = findViewById(R.id.add);
+        addDay.setText("add day");
         listView =  findViewById(R.id.list);
         adapter = new ArrayAdapter<>(this,R.layout.list_item,presenter.getDaysList());
         listView.setAdapter(adapter);

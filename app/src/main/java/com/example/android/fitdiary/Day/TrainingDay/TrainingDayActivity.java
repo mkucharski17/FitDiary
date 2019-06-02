@@ -26,6 +26,7 @@ public class TrainingDayActivity extends DayActivity implements TrainingDayPrese
         super.onCreate(savedInstanceState);
         Bundle extra = getIntent().getExtras();
         Date date = (Date)extra.get("day");
+        add.setText("add exercise");
         presenter = new TrainingDayPresenter(this,date);
         presenter.read();
 
@@ -45,7 +46,6 @@ public class TrainingDayActivity extends DayActivity implements TrainingDayPrese
                 }
             });
     }
-
 
     protected void openAddFragment(){
 

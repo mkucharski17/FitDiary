@@ -39,6 +39,7 @@ public class AddExerciseFragment extends Fragment implements AddExercisePresente
         presenter = new AddExercisePresenter(this,(List<Exercise>) getArguments().getSerializable("allExerciseList"));
         listView =  v.findViewById(R.id.list);
         newExercise = v.findViewById(R.id.add);
+        newExercise.setText("create new exercise");
         adapter = new ArrayAdapter<>(getActivity(),R.layout.list_item,presenter.getAllExercisesList());
         listView.setAdapter(adapter);
         setListeners();
@@ -67,7 +68,6 @@ public class AddExerciseFragment extends Fragment implements AddExercisePresente
             }
         });
     }
-
 
     private void close() {
         FragmentManager manager = getFragmentManager();
