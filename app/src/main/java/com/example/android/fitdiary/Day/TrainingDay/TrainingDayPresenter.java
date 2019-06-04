@@ -5,16 +5,13 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.android.fitdiary.Day.Day;
 import com.example.android.fitdiary.Day.DayPresenter;
-import com.example.android.fitdiary.Day.DietDay.Food;
-import com.example.android.fitdiary.DaysComparator;
-import com.example.android.fitdiary.MainActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -43,6 +40,10 @@ public class TrainingDayPresenter extends DayPresenter {
         this.iview = iview;
         day = new TrainingDay(date);
         allExercisesList = new ArrayList<>();
+    }
+
+    public void removeExercise(Exercise e) {
+        day.getExercises().remove(e);
     }
 
     public TrainingDay getDay() {
@@ -77,22 +78,43 @@ public class TrainingDayPresenter extends DayPresenter {
     }
 
 
-        private void readAllExercsiesList() {
+    private void readAllExercsiesList() {
 
-            dao.getDatabase().collection("users").document(mAuth.getCurrentUser().getUid())
-                    .collection("exercises")
-                    .get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                        @Override
-                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+        dao.getDatabase().collection("users").document(mAuth.getCurrentUser().getUid())
+                .collection("exercises")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                                Exercise exercise = documentSnapshot.toObject(Exercise.class);
-                                allExercisesList.add(exercise);
-                            }
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            Exercise exercise = documentSnapshot.toObject(Exercise.class);
+                            allExercisesList.add(exercise);
                         }
-                    });
-        }
+                    }
+                });
+    }
+
+    public void deleteItemofAllExerciseList(Exercise e){
+
+        dao.getDatabase().collection("users").document(mAuth.getCurrentUser().getUid())
+                .collection("exercises").document(e.getName())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
+
+
+    }
 
 
     public void saveDay() {
@@ -116,11 +138,11 @@ public class TrainingDayPresenter extends DayPresenter {
     }
 
 
-
-
-    public interface Iview{
+    public interface Iview {
         void loadAdapter();
+
         void setListeners();
+
         void showButton();
     }
 }

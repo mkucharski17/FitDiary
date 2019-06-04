@@ -23,6 +23,10 @@ public class TrainingDay extends Day {
         exercises = new ArrayList<>();
     }
 
+    public void deleteExercise(Exercise e){
+        exercises.remove(e);
+    }
+
     public List<Exercise> getExercises() {
         return exercises;
     }

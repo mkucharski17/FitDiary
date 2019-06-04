@@ -9,11 +9,6 @@ public class DayPresenter {
     protected Dao dao;
     protected FirebaseAuth mAuth;
 
-    public DayPresenter(Iview iview) {
-        this.iview = iview;
-        dao = new Dao();
-        mAuth = FirebaseAuth.getInstance();
-    }
 
     public DayPresenter() {
         dao = new Dao();

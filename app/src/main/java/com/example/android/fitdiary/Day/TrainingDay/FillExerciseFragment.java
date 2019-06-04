@@ -24,6 +24,7 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
     private EditText sets;
     private EditText weight;
     private Button ok;
+    private Button delete;
 
 
     public FillExerciseFragment(){}
@@ -33,15 +34,22 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
                              Bundle savedInstanceState) {
         callBack = (callBack) getArguments().getSerializable("bundle");
         View v = inflater.inflate(R.layout.fragment_fill_exercise, container, false);
-        presenter = new FillExercisePresenter(this);
-        presenter.setNew((boolean)getArguments().get("new"));
-        presenter.setExercise((Exercise) getArguments().get("exercise"));
         loadViews(v);
+        loadPresenter();
         setListener();
+        setTexts();
+        setInfo();
 
 
 
         return v;
+    }
+
+    public void loadPresenter(){
+        presenter = new FillExercisePresenter(this);
+        presenter.setNew((boolean)getArguments().get("new"));
+        presenter.setExercise((Exercise) getArguments().get("exercise"));
+
     }
 
     public void loadViews(View v){
@@ -50,10 +58,8 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
         sets = v.findViewById(R.id.sets);
         weight = v.findViewById(R.id.weight);
         ok = v.findViewById(R.id.ok);
-        name.setText(presenter.getExercise().getName());
-        sets.setText(Integer.toString(presenter.getExercise().getSets()));
-        reps.setText(Integer.toString(presenter.getExercise().getReps()));
-        weight.setText(Integer.toString(presenter.getExercise().getWeight()));
+        delete = v.findViewById(R.id.delete);
+
     }
 
     public void setInfo(){
@@ -63,11 +69,18 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
         presenter.getExercise().setWeight(Integer.parseInt(weight.getText().toString()));
     }
 
+    public void setTexts(){
+        name.setText(presenter.getExercise().getName());
+        sets.setText(Integer.toString(presenter.getExercise().getSets()));
+        reps.setText(Integer.toString(presenter.getExercise().getReps()));
+        weight.setText(Integer.toString(presenter.getExercise().getWeight()));
+
+    }
+
     public void setListener(){
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setInfo();
                 if(presenter.isNew())
                     presenter.saveNewExercise();
 
@@ -75,6 +88,16 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
                 close();
             }
         });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callBack.deleteExercise(presenter.getExercise());
+                close();
+            }
+        });
+
+
 
     }
 
@@ -85,6 +108,9 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
 
     public interface callBack{
         void OnCallBack(Exercise e);
+        void OnCallBack();
+        void deleteExercise(Exercise e);
+
 
     }
 

@@ -54,7 +54,7 @@ public class AddExerciseFragment extends Fragment implements AddExercisePresente
             public void onClick(View v) {
                 Exercise e = new Exercise();
                 close();
-                openCreatingFragment(e, true);
+                openFillFragment(e, true);
 
             }
         });
@@ -64,7 +64,7 @@ public class AddExerciseFragment extends Fragment implements AddExercisePresente
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Exercise e = adapter.getItem(position);
                 close();
-                openCreatingFragment(e,false);
+                openFillFragment(e,false);
             }
         });
     }
@@ -76,7 +76,7 @@ public class AddExerciseFragment extends Fragment implements AddExercisePresente
     }
 
 
-    private void openCreatingFragment(Exercise exercise, boolean New){
+    private void openFillFragment(Exercise exercise, boolean New){
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Bundle bundle = new Bundle();
