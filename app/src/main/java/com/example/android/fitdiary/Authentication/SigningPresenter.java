@@ -19,7 +19,6 @@ import static android.support.constraint.Constraints.TAG;
 public class SigningPresenter {
     private FirebaseAuth mAuth;
     private IView iview;
-    private Dao dao;
 
 
     public SigningPresenter(IView iview) {

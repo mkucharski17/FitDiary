@@ -21,6 +21,12 @@ public class DietDay extends Day {
         this.food = new ArrayList<>();
     }
 
+    public DietDay() {
+        super();
+        this.food = new ArrayList<>();
+    }
+
+
     public void addFood(Food food){
         this.food.add(food);
     }

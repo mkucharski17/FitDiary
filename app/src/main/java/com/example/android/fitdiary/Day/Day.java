@@ -3,10 +3,12 @@ package com.example.android.fitdiary.Day;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class Day {
-    private Date date;
+    protected Date date;
+
 
     public Day() {
     }
@@ -24,11 +26,10 @@ public class Day {
     }
 
 
-
     public String toString(){
-        Format formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String s = formatter.format(date);
-        return s;
+        Format formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY);
+        return  formatter.format(date);
+
     }
 
 }

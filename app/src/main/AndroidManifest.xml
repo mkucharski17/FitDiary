@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChooseActivity" />
+        <activity android:name=".Day.DietDay.DietDayActivity"
+            android:label="Diet Day"></activity>
+        <activity android:name=".Day.TrainingDay.TrainingDayActivity"
+            android:label="Training Day"/>
+        <activity android:name=".ChooseActivity"
+            android:label="Choose"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
