@@ -1,5 +1,7 @@
 package com.example.android.fitdiary.Day;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.example.android.fitdiary.Dao;
 import com.example.android.fitdiary.Day.DietDay.DietDay;
@@ -7,6 +9,7 @@ import com.example.android.fitdiary.Day.DietDay.DietDayActivity;
 import com.example.android.fitdiary.Day.TrainingDay.TrainingDayActivity;
 import com.example.android.fitdiary.DaysComparator;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -14,6 +17,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static android.support.constraint.Constraints.TAG;
 
 
 public class DaysListPresenter {
@@ -51,6 +56,30 @@ public class DaysListPresenter {
         return TrainingDayActivity.class;
     }
 
+    public void deleteList(){
+
+        for(int i = 0 ; i < DaysList.size() ; i++ )
+        {
+            Day d =DaysList.get(i);
+            dao.getDatabase().collection("users").document(mAuth.getCurrentUser().getUid())
+                    .collection(type + "days").document(d.toString())
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "DocumentSnapshot successfully deleted!<<<<<<<<<<<<<<<<<<<<");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d(TAG, "Error deleting document<<<<<<<<<<<<<<<<<<<<<<<<<<", e);
+                        }
+                    });
+        }
+
+    }
+
 
     public void read() {
 
@@ -81,6 +110,8 @@ public class DaysListPresenter {
         void loadViews();
 
         void setListeners();
+
+        void toast();
 
     }
 }

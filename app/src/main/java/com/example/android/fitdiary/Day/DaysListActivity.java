@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.example.android.fitdiary.R;
 import java.io.Serializable;
 
@@ -21,6 +23,8 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
     private ListView listView;
     private ArrayAdapter<Day> adapter;
     private Button addDay;
+    private Button deleteList;
+
 
 
     @Override
@@ -60,10 +64,22 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
         listView =  findViewById(R.id.list);
         adapter = new ArrayAdapter<>(this,R.layout.list_item,presenter.getDaysList());
         listView.setAdapter(adapter);
+        deleteList =findViewById(R.id.delete);
 
     }
 
     public void setListeners(){
+
+        deleteList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.deleteList();
+                presenter.getDaysList().clear();
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+
         addDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,5 +114,10 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
     @Override
     public void hideButton() {
         addDay.setVisibility(View.GONE);
+    }
+
+    public void toast(){
+        Toast.makeText(this, "This is my Toast message!",
+                Toast.LENGTH_LONG).show();
     }
 }
