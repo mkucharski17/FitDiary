@@ -13,6 +13,7 @@ import com.example.android.fitdiary.R;
 
 public abstract class DayActivity extends AppCompatActivity implements DayPresenter.Iview{
     protected Button add;
+    protected Button delete;
     protected ListView listView;
 
     @Override
@@ -25,6 +26,7 @@ public abstract class DayActivity extends AppCompatActivity implements DayPresen
     protected void loadViews(){
         add = findViewById(R.id.add);
         listView =  findViewById(R.id.list);
+        delete = findViewById(R.id.delete);
     }
 
 

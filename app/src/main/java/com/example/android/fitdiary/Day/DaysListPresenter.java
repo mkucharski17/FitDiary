@@ -67,13 +67,13 @@ public class DaysListPresenter {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Log.d(TAG, "DocumentSnapshot successfully deleted!<<<<<<<<<<<<<<<<<<<<");
+                            Log.d(TAG, "List of days successfully deleted!");
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.d(TAG, "Error deleting document<<<<<<<<<<<<<<<<<<<<<<<<<<", e);
+                            Log.d(TAG, "Error deleting List of days", e);
                         }
                     });
         }

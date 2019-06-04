@@ -60,27 +60,38 @@
 
     </LinearLayout>
 
+
+
     <LinearLayout
+        android:id="@+id/mid"
         android:layout_below="@+id/upper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <Button
             android:layout_weight="1"
+            android:id="@+id/deleteThis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="delete from this day"/>
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/deleteAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="delete from list"/>
+
+        <Button
             android:id="@+id/ok"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/ok"/>
 
-        <Button
-            android:layout_weight="1"
-            android:id="@+id/delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="delete"/>
-
     </LinearLayout>
+
+
 
 
 </RelativeLayout>

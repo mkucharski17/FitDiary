@@ -24,7 +24,8 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
     private EditText sets;
     private EditText weight;
     private Button ok;
-    private Button delete;
+    private Button deleteThis;
+    private Button deleteAll;
 
 
     public FillExerciseFragment(){}
@@ -38,7 +39,6 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
         loadPresenter();
         setListener();
         setTexts();
-        setInfo();
 
 
 
@@ -58,7 +58,9 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
         sets = v.findViewById(R.id.sets);
         weight = v.findViewById(R.id.weight);
         ok = v.findViewById(R.id.ok);
-        delete = v.findViewById(R.id.delete);
+        deleteThis = v.findViewById(R.id.deleteThis);
+        deleteAll = v.findViewById(R.id.deleteAll);
+
 
     }
 
@@ -81,6 +83,7 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setInfo();
                 if(presenter.isNew())
                     presenter.saveNewExercise();
 
@@ -89,13 +92,22 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
             }
         });
 
-        delete.setOnClickListener(new View.OnClickListener() {
+        deleteThis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 callBack.deleteExercise(presenter.getExercise());
                 close();
             }
         });
+
+        deleteAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callBack.removeExercise(presenter.getExercise());
+                close();
+            }
+        });
+
 
 
 
@@ -110,6 +122,7 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
         void OnCallBack(Exercise e);
         void OnCallBack();
         void deleteExercise(Exercise e);
+        void removeExercise(Exercise e);
 
 
     }

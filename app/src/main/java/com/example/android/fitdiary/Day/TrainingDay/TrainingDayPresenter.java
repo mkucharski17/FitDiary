@@ -137,6 +137,26 @@ public class TrainingDayPresenter extends DayPresenter {
                 });
     }
 
+    public void deleteDay(){
+
+        dao.getDatabase().collection("users").document(mAuth.getCurrentUser().getUid())
+                .collection("workoutdays").document(day.toString())
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
+
+    }
+
 
     public interface Iview {
         void loadAdapter();
