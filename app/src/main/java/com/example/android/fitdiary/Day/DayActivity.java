@@ -16,7 +16,7 @@ public abstract class DayActivity extends AppCompatActivity implements DayPresen
     protected Button delete;
     protected ListView listView;
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
@@ -29,11 +29,6 @@ public abstract class DayActivity extends AppCompatActivity implements DayPresen
         delete = findViewById(R.id.delete);
     }
 
-
-    @Override
-    public void hideButton(){
-        add.setVisibility(View.GONE);
-    }
 
     protected abstract void openAddFragment();
 

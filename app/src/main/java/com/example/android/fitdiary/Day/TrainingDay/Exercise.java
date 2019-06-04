@@ -1,8 +1,6 @@
 package com.example.android.fitdiary.Day.TrainingDay;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Exercise implements Serializable {
     private String name;

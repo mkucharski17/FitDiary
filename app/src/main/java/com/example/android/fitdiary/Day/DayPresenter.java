@@ -17,7 +17,6 @@ public class DayPresenter {
 
 
     public interface Iview{
-        void hideButton();
 
     }
 }

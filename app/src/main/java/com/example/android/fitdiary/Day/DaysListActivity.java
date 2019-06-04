@@ -1,6 +1,7 @@
 package com.example.android.fitdiary.Day;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -24,6 +25,7 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
     private ArrayAdapter<Day> adapter;
     private Button addDay;
     private Button deleteList;
+    private ProgressDialog dialog;
 
 
 
@@ -32,6 +34,7 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         loadPresenter();
+        loadProgrssDialog();
         presenter.read();
 
     }
@@ -62,10 +65,13 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
         addDay = findViewById(R.id.add);
         addDay.setText("add day");
         listView =  findViewById(R.id.list);
+        deleteList =findViewById(R.id.delete);
+        deleteList.setText("delete list");
+    }
+
+    public void loadAdapter(){
         adapter = new ArrayAdapter<>(this,R.layout.list_item,presenter.getDaysList());
         listView.setAdapter(adapter);
-        deleteList =findViewById(R.id.delete);
-
     }
 
     public void setListeners(){
@@ -83,7 +89,6 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
         addDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideButton();
                 openFragment();
             }
         });
@@ -99,25 +104,29 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
         });
     }
 
+    public void loadProgrssDialog(){
+        dialog = new ProgressDialog(this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setTitle("Loading");
+        dialog.setMessage("Loading. Please wait...");
+        dialog.setIndeterminate(true);
+        dialog.setCanceledOnTouchOutside(false);
+    }
+
+    public void showProgressDialog(){
+        dialog.show();
+    }
+
+    public void hideProgressDialog(){
+        dialog.dismiss();
+
+    }
+
     @Override
     public void onCallBack(Day day){
         presenter.addDay(day);
-        showButton();
         adapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void showButton() {
-        addDay.setVisibility(View.VISIBLE);
-    }
 
-    @Override
-    public void hideButton() {
-        addDay.setVisibility(View.GONE);
-    }
-
-    public void toast(){
-        Toast.makeText(this, "This is my Toast message!",
-                Toast.LENGTH_LONG).show();
-    }
 }

@@ -27,6 +27,7 @@ public class AddExerciseFragment extends Fragment implements AddExercisePresente
     private ListView listView;
     private ArrayAdapter<Exercise> adapter;
     private Button newExercise;
+    private Button delete;
     private AddExercisePresenter presenter;
 
 
@@ -38,6 +39,8 @@ public class AddExerciseFragment extends Fragment implements AddExercisePresente
         View v = inflater.inflate(R.layout.activity_list, container, false);
         presenter = new AddExercisePresenter(this,(List<Exercise>) getArguments().getSerializable("allExerciseList"));
         listView =  v.findViewById(R.id.list);
+        delete = v.findViewById(R.id.delete);
+        hideDeleteButton();
         newExercise = v.findViewById(R.id.add);
         newExercise.setText("create new exercise");
         adapter = new ArrayAdapter<>(getActivity(),R.layout.list_item,presenter.getAllExercisesList());
@@ -55,7 +58,6 @@ public class AddExerciseFragment extends Fragment implements AddExercisePresente
                 Exercise e = new Exercise();
                 close();
                 openFillFragment(e, true);
-
             }
         });
 
@@ -67,6 +69,7 @@ public class AddExerciseFragment extends Fragment implements AddExercisePresente
                 openFillFragment(e,false);
             }
         });
+
     }
 
     private void close() {
@@ -91,5 +94,8 @@ public class AddExerciseFragment extends Fragment implements AddExercisePresente
 
     }
 
+    public void hideDeleteButton(){
+        delete.setVisibility(View.GONE);
+    }
 
 }

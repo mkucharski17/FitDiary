@@ -23,7 +23,7 @@ public class AddExercisePresenter {
     }
 
     public interface IView{
-
+        void hideDeleteButton();
     }
 
 }

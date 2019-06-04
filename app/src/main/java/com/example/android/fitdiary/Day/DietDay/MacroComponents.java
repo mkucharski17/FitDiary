@@ -13,6 +13,21 @@ public class MacroComponents {
         this.fat = fat;
     }
 
+    public MacroComponents() {
+    }
+
+    public void setCarbohydrates(float carbohydrates) {
+        this.carbohydrates = carbohydrates;
+    }
+
+    public void setProtein(float protein) {
+        this.protein = protein;
+    }
+
+    public void setFat(float fat) {
+        this.fat = fat;
+    }
+
     public float getCarbohydrates() {
         return carbohydrates;
     }

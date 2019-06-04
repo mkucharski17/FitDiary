@@ -1,33 +1,31 @@
 package com.example.android.fitdiary.Day.DietDay;
 
 import com.example.android.fitdiary.Day.Day;
+import com.example.android.fitdiary.Day.TrainingDay.Exercise;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class DietDay extends Day {
-    private ArrayList<Food> food;
-
-    public ArrayList<Food> getFood() {
-        return food;
-    }
-
-    public void setFood(ArrayList<Food> food) {
-        this.food = food;
-    }
-
-    public DietDay(Date date) {
-        super(date);
-        this.food = new ArrayList<>();
-    }
+    private List<Food> food;
 
     public DietDay() {
         super();
-        this.food = new ArrayList<>();
+        food = new ArrayList<>();
     }
 
 
-    public void addFood(Food food){
-        this.food.add(food);
+    public DietDay(Date date) {
+        super(date);
+        food = new ArrayList<>();
+    }
+
+    public List<Food> getFood() {
+        return food;
+    }
+
+    public void addFood(Food f) {
+        this.food.add(f);
     }
 }

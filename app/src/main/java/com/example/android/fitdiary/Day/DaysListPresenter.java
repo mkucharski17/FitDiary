@@ -82,6 +82,7 @@ public class DaysListPresenter {
 
 
     public void read() {
+        iview.showProgressDialog();
 
         dao.getDatabase().collection("users").document(mAuth.getCurrentUser().getUid())
                 .collection(type + "days")
@@ -95,23 +96,26 @@ public class DaysListPresenter {
                             DaysList.add(day);
                         }
                         iview.loadViews();
+                        iview.loadAdapter();
                         iview.setListeners();
                         Collections.sort(DaysList, new DaysComparator());
+                        iview.hideProgressDialog();
                     }
                 });
 
     }
 
     public interface IView {
-        void hideButton();
-
-        void showButton();
 
         void loadViews();
 
         void setListeners();
+        void loadAdapter();
 
-        void toast();
+        void showProgressDialog();
+
+        void hideProgressDialog();
+
 
     }
 }

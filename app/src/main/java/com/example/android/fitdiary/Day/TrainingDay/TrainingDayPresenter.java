@@ -46,6 +46,12 @@ public class TrainingDayPresenter extends DayPresenter {
         day.getExercises().remove(e);
     }
 
+    public void addExercise(Exercise e , boolean isNew){
+        if(isNew)
+            allExercisesList.add(e);
+        day.addExercise(e);
+    }
+
     public TrainingDay getDay() {
         return day;
     }
@@ -66,6 +72,7 @@ public class TrainingDayPresenter extends DayPresenter {
                         day = document.toObject(TrainingDay.class);
                         iview.loadAdapter();
                         iview.setListeners();
+                        iview.setText();
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -95,7 +102,7 @@ public class TrainingDayPresenter extends DayPresenter {
                 });
     }
 
-    public void deleteItemofAllExerciseList(Exercise e){
+    public void deleteItemOfAllExerciseList(Exercise e){
 
         dao.getDatabase().collection("users").document(mAuth.getCurrentUser().getUid())
                 .collection("exercises").document(e.getName())
@@ -163,6 +170,7 @@ public class TrainingDayPresenter extends DayPresenter {
 
         void setListeners();
 
-        void showButton();
+        void setText();
+
     }
 }

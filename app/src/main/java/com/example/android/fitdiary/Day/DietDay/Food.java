@@ -1,17 +1,26 @@
 package com.example.android.fitdiary.Day.DietDay;
 
-public class Food {
+import java.io.Serializable;
+
+public class Food implements Serializable {
     private String name;
     private float portion;
     private int Kcal;
     private MacroComponents macroComponents;
 
 
-    public Food(String name, float portion, MacroComponents macroComponents) {
-        this.name = name;
-        this.portion = portion;
-        computeeKcal(macroComponents);
+    public Food() {
+        macroComponents = new MacroComponents();
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPortion(float portion) {
+        this.portion = portion;
+    }
+
 
     public String getName() {
         return name;
@@ -21,17 +30,18 @@ public class Food {
         return portion;
     }
 
-    public int getKcal() {
-        return Kcal;
-    }
 
     public MacroComponents getMacroComponents() {
         return macroComponents;
     }
 
-    private void computeeKcal(MacroComponents macroComponents) {
+    public void computeKcal() {
         Kcal = (int) ((macroComponents.getCarbohydrates() * 4 + macroComponents.getProtein() * 4 +
                 macroComponents.getFat() * 9)*portion);
+    }
+
+    public String toString(){
+        return name +" " + (int)(portion*100) + "g " + Kcal +" Kcal";
     }
 
 }

@@ -25,7 +25,7 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
     private EditText weight;
     private Button ok;
     private Button deleteThis;
-    private Button deleteAll;
+    private Button deleteFromList;
 
 
     public FillExerciseFragment(){}
@@ -59,7 +59,7 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
         weight = v.findViewById(R.id.weight);
         ok = v.findViewById(R.id.ok);
         deleteThis = v.findViewById(R.id.deleteThis);
-        deleteAll = v.findViewById(R.id.deleteAll);
+        deleteFromList = v.findViewById(R.id.deleteAll);
 
 
     }
@@ -87,7 +87,7 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
                 if(presenter.isNew())
                     presenter.saveNewExercise();
 
-                callBack.OnCallBack(presenter.getExercise());
+                callBack.addExercise(presenter.getExercise(),presenter.isNew());
                 close();
             }
         });
@@ -100,10 +100,10 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
             }
         });
 
-        deleteAll.setOnClickListener(new View.OnClickListener() {
+        deleteFromList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                callBack.removeExercise(presenter.getExercise());
+                callBack.removeExerciseFromList(presenter.getExercise());
                 close();
             }
         });
@@ -119,10 +119,9 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
     }
 
     public interface callBack{
-        void OnCallBack(Exercise e);
-        void OnCallBack();
+        void addExercise(Exercise e,boolean isNew);
         void deleteExercise(Exercise e);
-        void removeExercise(Exercise e);
+        void removeExerciseFromList(Exercise e);
 
 
     }

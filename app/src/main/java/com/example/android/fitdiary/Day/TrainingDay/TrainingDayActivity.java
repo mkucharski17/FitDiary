@@ -1,19 +1,13 @@
 package com.example.android.fitdiary.Day.TrainingDay;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Parcelable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
-
-import com.example.android.fitdiary.ChooseActivity;
-import com.example.android.fitdiary.Day.AddDayFragment;
-import com.example.android.fitdiary.Day.Day;
 import com.example.android.fitdiary.Day.DayActivity;
 import com.example.android.fitdiary.Day.DaysListActivity;
 import com.example.android.fitdiary.R;
@@ -31,11 +25,8 @@ public class TrainingDayActivity extends DayActivity implements TrainingDayPrese
         super.onCreate(savedInstanceState);
         Bundle extra = getIntent().getExtras();
         Date date = (Date) extra.get("day");
-        add.setText("add exercise");
-        delete.setText("delete this day");
         presenter = new TrainingDayPresenter(this, date);
         presenter.read();
-
     }
 
     public void loadAdapter() {
@@ -48,7 +39,6 @@ public class TrainingDayActivity extends DayActivity implements TrainingDayPrese
             @Override
             public void onClick(View v) {
                 openAddFragment();
-                hideButton();
             }
         });
 
@@ -56,9 +46,8 @@ public class TrainingDayActivity extends DayActivity implements TrainingDayPrese
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Exercise e = adapter.getItem(position);
-                hideButton();
                 presenter.removeExercise(e);
-                openFillingFragment(e, false);
+                openFillingFragment(e);
             }
         });
 
@@ -72,7 +61,11 @@ public class TrainingDayActivity extends DayActivity implements TrainingDayPrese
             }
         });
 
+    }
 
+    public void setText(){
+        add.setText("add exercise");
+        delete.setText("delete this day");
     }
 
     protected void openAddFragment() {
@@ -89,47 +82,34 @@ public class TrainingDayActivity extends DayActivity implements TrainingDayPrese
         transaction.commit();
     }
 
-    private void openFillingFragment(Exercise exercise, boolean New) {
+    private void openFillingFragment(Exercise exercise) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Bundle bundle = new Bundle();
         bundle.putSerializable("exercise", exercise);
-        bundle.putSerializable("new", New);
+        bundle.putSerializable("new", false);
         bundle.putSerializable("bundle", this);
         FillExerciseFragment fragment = new FillExerciseFragment();
         fragment.setArguments(bundle);
         transaction.add(R.id.container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
-
     }
 
-
-    public void showButton() {
-        add.setVisibility(View.VISIBLE);
-    }
-
-    public void OnCallBack(Exercise e) {
-        presenter.getDay().addExercise(e);
+    public void addExercise(Exercise e, boolean isNew) {
+        presenter.addExercise(e,isNew);
         presenter.saveDay();
-        showButton();
-
     }
 
-    public void OnCallBack() {
-        presenter.saveDay();
-        showButton();
-    }
 
     public void deleteExercise(Exercise e) {
         presenter.getDay().getExercises().remove(e);
         presenter.saveDay();
-        showButton();
     }
 
-    public void removeExercise(Exercise e){
+    public void removeExerciseFromList(Exercise e){
         presenter.getAllExercisesList().remove(e);
-        presenter.deleteItemofAllExerciseList(e);
-        showButton();
+        presenter.deleteItemOfAllExerciseList(e);
     }
+
 }
