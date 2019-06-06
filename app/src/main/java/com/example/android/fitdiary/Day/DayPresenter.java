@@ -18,5 +18,9 @@ public class DayPresenter {
 
     public interface Iview{
 
+        void loadAdapter();
+
+        void setListeners();
+
     }
 }

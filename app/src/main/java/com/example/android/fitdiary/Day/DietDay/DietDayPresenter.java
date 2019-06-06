@@ -68,7 +68,6 @@ public class DietDayPresenter extends DayPresenter {
                         day = document.toObject(DietDay.class);
                         iview.loadAdapter();
                         iview.setListeners();
-                        iview.setText();
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -159,16 +158,4 @@ public class DietDayPresenter extends DayPresenter {
                 });
 
     }
-
-
-    public interface Iview {
-        void loadAdapter();
-
-        void setListeners();
-
-        void setText();
-
-    }
-
-
 }

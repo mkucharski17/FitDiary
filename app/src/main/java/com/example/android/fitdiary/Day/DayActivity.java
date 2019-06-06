@@ -29,6 +29,11 @@ public abstract class DayActivity extends AppCompatActivity implements DayPresen
         delete = findViewById(R.id.delete);
     }
 
+    protected void setText(String add, String delete){
+        this.add.setText(add);
+        this.delete.setText(delete);
+    }
+
 
     protected abstract void openAddFragment();
 

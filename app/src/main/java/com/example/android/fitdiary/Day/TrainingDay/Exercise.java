@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 public class Exercise implements Serializable {
     private String name;
-    private int  sets;
+    private int sets;
     private int weight;
     private int reps;
 
-    public Exercise()  {
+    public Exercise() {
     }
 
     public String getName() {
@@ -43,9 +43,8 @@ public class Exercise implements Serializable {
         this.reps = reps;
     }
 
-
-    public String toString(){
-        return (name +"  "+ sets+"x" +reps + "  "+ weight+"kg");
+    public String toString() {
+        return (name + "  " + sets + "x" + reps + "  " + weight + "kg");
 
     }
 }

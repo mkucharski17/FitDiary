@@ -24,6 +24,7 @@ public class DietDayActivity extends DayActivity implements DietDayPresenter.Ivi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setText("add food", "delete this day");
         Bundle extra = getIntent().getExtras();
         Date date = (Date) extra.get("day");
         presenter = new DietDayPresenter(this, date);
@@ -62,11 +63,6 @@ public class DietDayActivity extends DayActivity implements DietDayPresenter.Ivi
             }
         });
 
-    }
-
-    public void setText(){
-        add.setText("add food");
-        delete.setText("delete this day");
     }
 
     protected void openAddFragment() {

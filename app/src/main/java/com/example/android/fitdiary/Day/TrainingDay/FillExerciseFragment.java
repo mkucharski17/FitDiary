@@ -39,9 +39,6 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
         loadPresenter();
         setListener();
         setTexts();
-
-
-
         return v;
     }
 

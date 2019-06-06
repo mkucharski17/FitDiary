@@ -72,7 +72,6 @@ public class TrainingDayPresenter extends DayPresenter {
                         day = document.toObject(TrainingDay.class);
                         iview.loadAdapter();
                         iview.setListeners();
-                        iview.setText();
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -164,13 +163,4 @@ public class TrainingDayPresenter extends DayPresenter {
 
     }
 
-
-    public interface Iview {
-        void loadAdapter();
-
-        void setListeners();
-
-        void setText();
-
-    }
 }
