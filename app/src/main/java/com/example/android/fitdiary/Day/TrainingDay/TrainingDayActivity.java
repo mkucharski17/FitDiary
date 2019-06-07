@@ -79,6 +79,7 @@ public class TrainingDayActivity extends DayActivity implements DayPresenter.Ivi
         transaction.commit();
     }
 
+
     private void openFillingFragment(Exercise exercise) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();

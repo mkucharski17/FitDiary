@@ -14,12 +14,14 @@ import com.example.android.fitdiary.R;
 public abstract class DayActivity extends AppCompatActivity implements DayPresenter.Iview{
     protected Button add;
     protected Button delete;
+    protected Button chart;
     protected ListView listView;
+
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_list_2);
         loadViews();
     }
 
@@ -27,6 +29,7 @@ public abstract class DayActivity extends AppCompatActivity implements DayPresen
         add = findViewById(R.id.add);
         listView =  findViewById(R.id.list);
         delete = findViewById(R.id.delete);
+        chart = findViewById(R.id.chart);
     }
 
     protected void setText(String add, String delete){

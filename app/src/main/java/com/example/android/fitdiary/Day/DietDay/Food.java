@@ -8,6 +8,9 @@ public class Food implements Serializable {
     private int Kcal;
     private MacroComponents macroComponents;
 
+    public int getKcal() {
+        return Kcal;
+    }
 
     public Food() {
         macroComponents = new MacroComponents();
@@ -41,6 +44,7 @@ public class Food implements Serializable {
     }
 
     public String toString(){
+        computeKcal();
         return name +" " + (int)(portion*100) + "g " + Kcal +" Kcal";
     }
 

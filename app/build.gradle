@@ -18,6 +18,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    repositories {
+        maven {
+            jcenter()
+            url "https://www.jitpack.io"
+        }
+    }
 }
 
 dependencies {
@@ -28,9 +35,11 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.google.firebase:firebase-firestore:17.1.2'
     implementation 'com.google.firebase:firebase-auth:16.0.5'
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.2.4'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
 
 
 }

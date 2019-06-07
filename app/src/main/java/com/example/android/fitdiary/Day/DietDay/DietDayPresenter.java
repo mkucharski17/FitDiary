@@ -1,6 +1,7 @@
 package com.example.android.fitdiary.Day.DietDay;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.android.fitdiary.Day.Day;
 import com.example.android.fitdiary.Day.DayPresenter;

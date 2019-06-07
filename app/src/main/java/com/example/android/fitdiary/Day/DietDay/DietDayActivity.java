@@ -3,11 +3,12 @@ package com.example.android.fitdiary.Day.DietDay;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
+
 import com.example.android.fitdiary.Day.DayActivity;
 import com.example.android.fitdiary.Day.DaysListActivity;
 
@@ -63,6 +64,12 @@ public class DietDayActivity extends DayActivity implements DietDayPresenter.Ivi
             }
         });
 
+        chart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPieCHartFragment();
+            }
+        });
     }
 
     protected void openAddFragment() {
@@ -77,6 +84,20 @@ public class DietDayActivity extends DayActivity implements DietDayPresenter.Ivi
         transaction.add(R.id.container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    private void openPieCHartFragment(){
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("food", (Serializable) presenter.getDay().getFood());
+        bundle.putSerializable("bundle", this);
+        PieChartFragment fragment = new PieChartFragment();
+        fragment.setArguments(bundle);
+        transaction.add(R.id.container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
     }
 
     private void openFillFoodFragment(Food f) {
