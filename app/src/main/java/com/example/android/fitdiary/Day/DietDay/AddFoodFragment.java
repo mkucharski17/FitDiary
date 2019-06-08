@@ -14,12 +14,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.android.fitdiary.Day.TrainingDay.BaseFragment;
 import com.example.android.fitdiary.R;
 
 import java.util.List;
 
 
-public class AddFoodFragment extends Fragment implements AddFoodPresenter.IView{
+public class AddFoodFragment extends BaseFragment implements AddFoodPresenter.IView{
     private ListView listView;
     private ArrayAdapter<Food> adapter;
     private Button newFood;
@@ -67,13 +68,6 @@ public class AddFoodFragment extends Fragment implements AddFoodPresenter.IView{
         });
 
     }
-
-    private void close() {
-        FragmentManager manager = getFragmentManager();
-        manager.popBackStack();
-
-    }
-
 
     private void openFillFoodFragment(Food f, boolean New){
         FragmentManager manager = getFragmentManager();

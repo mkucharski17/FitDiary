@@ -16,7 +16,7 @@ import android.widget.EditText;
 import com.example.android.fitdiary.R;
 
 
-public class FillExerciseFragment extends Fragment implements FillExercisePresenter.IView {
+public class FillExerciseFragment extends BaseFragment implements FillExercisePresenter.IView {
     private callBack callBack;
     private FillExercisePresenter presenter;
     private EditText name;
@@ -110,16 +110,10 @@ public class FillExerciseFragment extends Fragment implements FillExercisePresen
 
     }
 
-    private void close() {
-        FragmentManager manager = getFragmentManager();
-        manager.popBackStack();
-    }
-
     public interface callBack{
         void addExercise(Exercise e,boolean isNew);
         void deleteExercise(Exercise e);
         void removeExerciseFromList(Exercise e);
-
 
     }
 

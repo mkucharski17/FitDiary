@@ -23,7 +23,7 @@ import java.io.Serializable;
 import java.util.List;
 
 
-public class AddExerciseFragment extends Fragment implements AddExercisePresenter.IView{
+public class AddExerciseFragment extends BaseFragment implements AddExercisePresenter.IView{
     private ListView listView;
     private ArrayAdapter<Exercise> adapter;
     private Button newExercise;
@@ -71,13 +71,6 @@ public class AddExerciseFragment extends Fragment implements AddExercisePresente
         });
 
     }
-
-    private void close() {
-        FragmentManager manager = getFragmentManager();
-        manager.popBackStack();
-
-    }
-
 
     private void openFillFragment(Exercise exercise, boolean New){
         FragmentManager manager = getFragmentManager();

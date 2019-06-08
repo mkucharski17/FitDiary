@@ -17,8 +17,6 @@ public abstract class DayActivity extends AppCompatActivity implements DayPresen
     protected Button chart;
     protected ListView listView;
 
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_2);
@@ -36,8 +34,5 @@ public abstract class DayActivity extends AppCompatActivity implements DayPresen
         this.add.setText(add);
         this.delete.setText(delete);
     }
-
-
-    protected abstract void openAddFragment();
 
 }

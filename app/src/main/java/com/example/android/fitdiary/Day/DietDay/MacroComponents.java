@@ -32,7 +32,6 @@ public class MacroComponents {
         return carbohydrates;
     }
 
-
     public float getProtein() {
         return protein;
     }

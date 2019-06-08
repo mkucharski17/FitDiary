@@ -8,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.android.fitdiary.Day.TrainingDay.BaseFragment;
 import com.example.android.fitdiary.R;
 
-public class FillFoodFragment  extends Fragment implements FillFoodPresenter.IView {
+public class FillFoodFragment  extends BaseFragment implements FillFoodPresenter.IView {
 
     private callBack callBack;
     private FillFoodPresenter presenter;
@@ -54,8 +56,6 @@ public class FillFoodFragment  extends Fragment implements FillFoodPresenter.IVi
         ok = v.findViewById(R.id.ok);
         deleteThis = v.findViewById(R.id.deleteThis);
         deleteFromList = v.findViewById(R.id.deleteAll);
-
-
 
     }
 
@@ -109,11 +109,6 @@ public class FillFoodFragment  extends Fragment implements FillFoodPresenter.IVi
 
 
 
-    }
-
-    private void close() {
-        FragmentManager manager = getFragmentManager();
-        manager.popBackStack();
     }
 
     public interface callBack{

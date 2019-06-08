@@ -1,6 +1,4 @@
 package com.example.android.fitdiary.Day.DietDay;
-
-import com.example.android.fitdiary.Day.DietDay.Food;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;

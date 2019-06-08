@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import com.example.android.fitdiary.Day.DayActivity;
 import com.example.android.fitdiary.Day.DayPresenter;
 import com.example.android.fitdiary.Day.DaysListActivity;
+import com.example.android.fitdiary.Day.DietDay.PieChartFragment;
 import com.example.android.fitdiary.R;
 
 import java.io.Serializable;
@@ -62,6 +63,26 @@ public class TrainingDayActivity extends DayActivity implements DayPresenter.Ivi
                 startActivity(workoutIntent);
             }
         });
+
+        chart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openChartFragment();
+            }
+        });
+    }
+
+    private void openChartFragment(){
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("exercises", (Serializable) presenter.getDay().getExercises());
+        bundle.putSerializable("bundle", this);
+        BarChartFragment fragment = new BarChartFragment();
+        fragment.setArguments(bundle);
+        transaction.add(R.id.container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
 
     }
 
