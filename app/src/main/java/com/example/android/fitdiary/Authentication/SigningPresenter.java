@@ -1,18 +1,12 @@
 package com.example.android.fitdiary.Authentication;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.android.fitdiary.Dao;
-import com.example.android.fitdiary.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 
 import static android.support.constraint.Constraints.TAG;
 
@@ -26,7 +20,7 @@ public class SigningPresenter {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    public void signUp(String email, String password){
+    public void signUp(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -44,7 +38,7 @@ public class SigningPresenter {
                 });
     }
 
-    public void signIn(String email, String password){
+    public void signIn(String email, String password) {
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -64,10 +58,11 @@ public class SigningPresenter {
     }
 
 
-
-    public interface IView{
+    public interface IView {
         void signingSuccessful();
+
         void signingFailure();
+
         void runIntent();
     }
 

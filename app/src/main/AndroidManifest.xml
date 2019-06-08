@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Day.DietDay.DietDayActivity"
+        <activity android:name=".Day.DietDay.Views.DietDayActivity"
             android:label="Diet Day"></activity>
-        <activity android:name=".Day.TrainingDay.TrainingDayActivity"
+        <activity android:name=".Day.TrainingDay.Views.TrainingDayActivity"
             android:label="Training Day"/>
         <activity android:name=".ChooseActivity"
             android:label="Choose"/>
@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Day.DaysListActivity" />
+        <activity android:name=".Day.Views.DaysListActivity" />
         <activity
             android:name=".Authentication.RegistrationActivity"
             android:label="Registration" />

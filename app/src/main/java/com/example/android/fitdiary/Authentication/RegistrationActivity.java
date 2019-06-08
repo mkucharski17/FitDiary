@@ -1,12 +1,13 @@
 package com.example.android.fitdiary.Authentication;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.example.android.fitdiary.MainActivity;
 import com.example.android.fitdiary.R;
 
@@ -44,7 +45,7 @@ public class RegistrationActivity extends AppCompatActivity implements SigningPr
 
     @Override
     public void signingSuccessful() {
-        Toast.makeText(getApplicationContext(), "Signing up successful" , Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Signing up successful", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -53,7 +54,7 @@ public class RegistrationActivity extends AppCompatActivity implements SigningPr
     }
 
     @Override
-    public void runIntent(){
+    public void runIntent() {
         Intent mainIntent = new Intent(RegistrationActivity.this, MainActivity.class);
         startActivity(mainIntent);
     }
