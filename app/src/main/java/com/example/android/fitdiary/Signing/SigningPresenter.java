@@ -1,4 +1,4 @@
-package com.example.android.fitdiary.Authentication;
+package com.example.android.fitdiary.Signing;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
