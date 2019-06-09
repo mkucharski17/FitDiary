@@ -1,4 +1,4 @@
-package com.example.android.fitdiary.Authentication;
+package com.example.android.fitdiary.Signing;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.android.fitdiary.MainActivity;
+
 import com.example.android.fitdiary.R;
 
 public class RegistrationActivity extends AppCompatActivity implements SigningPresenter.IView {
@@ -55,7 +55,7 @@ public class RegistrationActivity extends AppCompatActivity implements SigningPr
 
     @Override
     public void runIntent() {
-        Intent mainIntent = new Intent(RegistrationActivity.this, MainActivity.class);
+        Intent mainIntent = new Intent(RegistrationActivity.this, com.example.android.fitdiary.Signing.SigningInActivity.class);
         startActivity(mainIntent);
     }
 }

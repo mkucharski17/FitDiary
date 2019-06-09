@@ -1,4 +1,4 @@
-package com.example.android.fitdiary;
+package com.example.android.fitdiary.Signing;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.android.fitdiary.Authentication.RegistrationActivity;
-import com.example.android.fitdiary.Authentication.SigningPresenter;
+import com.example.android.fitdiary.ChooseActivity;
+import com.example.android.fitdiary.R;
 
-public class MainActivity extends AppCompatActivity implements SigningPresenter.IView {
+
+public class SigningInActivity extends AppCompatActivity implements SigningPresenter.IView {
     private Button register;
     private Button signIn;
     private EditText email;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements SigningPresenter.
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent registerIntent = new Intent(MainActivity.this, RegistrationActivity.class);
+                Intent registerIntent = new Intent(SigningInActivity.this, RegistrationActivity.class);
                 startActivity(registerIntent);
             }
         });
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements SigningPresenter.
 
     @Override
     public void runIntent() {
-        Intent chooseIntent = new Intent(MainActivity.this, ChooseActivity.class);
+        Intent chooseIntent = new Intent(SigningInActivity.this, ChooseActivity.class);
         startActivity(chooseIntent);
     }
 }
