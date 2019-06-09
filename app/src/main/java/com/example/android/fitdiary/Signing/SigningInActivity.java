@@ -1,15 +1,15 @@
 package com.example.android.fitdiary;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.android.fitdiary.Authentication.SigningPresenter;
 import com.example.android.fitdiary.Authentication.RegistrationActivity;
+import com.example.android.fitdiary.Authentication.SigningPresenter;
 
 public class MainActivity extends AppCompatActivity implements SigningPresenter.IView {
     private Button register;
