@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.android.fitdiary.Day.TrainingDay.Presenters.AddExercisePresenter;
-import com.example.android.fitdiary.Day.TrainingDay.Presenters.BaseFragment;
+import com.example.android.fitdiary.Views.BaseFragment;
 import com.example.android.fitdiary.Day.TrainingDay.Models.Exercise;
 import com.example.android.fitdiary.R;
 

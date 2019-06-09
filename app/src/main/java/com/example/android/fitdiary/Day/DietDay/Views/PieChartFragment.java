@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.example.android.fitdiary.Day.DietDay.Models.Food;
 import com.example.android.fitdiary.Day.DietDay.Presenters.PieChartPresenter;
-import com.example.android.fitdiary.Day.TrainingDay.Presenters.BaseFragment;
+import com.example.android.fitdiary.Views.BaseFragment;
 import com.example.android.fitdiary.R;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;

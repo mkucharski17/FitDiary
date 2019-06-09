@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 import com.example.android.fitdiary.Day.DietDay.Presenters.FillFoodPresenter;
 import com.example.android.fitdiary.Day.DietDay.Models.Food;
-import com.example.android.fitdiary.Day.TrainingDay.Presenters.BaseFragment;
+import com.example.android.fitdiary.Views.BaseFragment;
 import com.example.android.fitdiary.R;
 
 public class FillFoodFragment extends BaseFragment implements FillFoodPresenter.IView {

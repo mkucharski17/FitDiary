@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.android.fitdiary.Day.TrainingDay.Presenters.BaseFragment;
+import com.example.android.fitdiary.Views.BaseFragment;
 import com.example.android.fitdiary.Day.TrainingDay.Presenters.FillExercisePresenter;
 import com.example.android.fitdiary.Day.TrainingDay.Models.Exercise;
 import com.example.android.fitdiary.R;

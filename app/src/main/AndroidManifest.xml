@@ -13,9 +13,9 @@
             android:label="Diet Day"></activity>
         <activity android:name=".Day.TrainingDay.Views.TrainingDayActivity"
             android:label="Training Day"/>
-        <activity android:name=".Signing.ChooseActivity"
+        <activity android:name=".Views.ChooseActivity"
             android:label="Choose"/>
-        <activity android:name=".Signing.SigningInActivity">
+        <activity android:name=".Signing.Views.SigningInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,7 @@
         </activity>
         <activity android:name=".Day.Views.DaysListActivity" />
         <activity
-            android:name=".Signing.RegistrationActivity"
+            android:name=".Signing.Views.RegistrationActivity"
             android:label="Registration" />
     </application>
 

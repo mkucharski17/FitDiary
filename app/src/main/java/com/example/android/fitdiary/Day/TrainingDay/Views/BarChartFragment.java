@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.fitdiary.Day.TrainingDay.Presenters.BarChartPresenter;
-import com.example.android.fitdiary.Day.TrainingDay.Presenters.BaseFragment;
+import com.example.android.fitdiary.Views.BaseFragment;
 import com.example.android.fitdiary.Day.TrainingDay.Models.Exercise;
 import com.example.android.fitdiary.R;
 import com.github.mikephil.charting.charts.BarChart;

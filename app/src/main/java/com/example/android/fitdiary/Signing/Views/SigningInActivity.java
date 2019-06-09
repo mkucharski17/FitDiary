@@ -1,4 +1,4 @@
-package com.example.android.fitdiary.Signing;
+package com.example.android.fitdiary.Signing.Views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.android.fitdiary.ChooseActivity;
+import com.example.android.fitdiary.Signing.Presenters.SigningPresenter;
+import com.example.android.fitdiary.Views.ChooseActivity;
 import com.example.android.fitdiary.R;
 
 

@@ -1,4 +1,4 @@
-package com.example.android.fitdiary.Signing;
+package com.example.android.fitdiary.Signing.Views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 
 import com.example.android.fitdiary.R;
+import com.example.android.fitdiary.Signing.Presenters.SigningPresenter;
 
 public class RegistrationActivity extends AppCompatActivity implements SigningPresenter.IView {
     private EditText email;
@@ -55,7 +56,7 @@ public class RegistrationActivity extends AppCompatActivity implements SigningPr
 
     @Override
     public void runIntent() {
-        Intent mainIntent = new Intent(RegistrationActivity.this, com.example.android.fitdiary.Signing.SigningInActivity.class);
+        Intent mainIntent = new Intent(RegistrationActivity.this, SigningInActivity.class);
         startActivity(mainIntent);
     }
 }

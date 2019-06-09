@@ -1,4 +1,4 @@
-package com.example.android.fitdiary.Signing;
+package com.example.android.fitdiary.Signing.Presenters;
 
 import android.support.annotation.NonNull;
 import android.util.Log;

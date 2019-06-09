@@ -13,7 +13,7 @@ import android.widget.ListView;
 
 import com.example.android.fitdiary.Day.DietDay.Presenters.AddFoodPresenter;
 import com.example.android.fitdiary.Day.DietDay.Models.Food;
-import com.example.android.fitdiary.Day.TrainingDay.Presenters.BaseFragment;
+import com.example.android.fitdiary.Views.BaseFragment;
 import com.example.android.fitdiary.R;
 
 import java.util.List;
