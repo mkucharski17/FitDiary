@@ -9,6 +9,9 @@ import android.widget.TextView;
 import com.example.android.fitdiary.Day.Views.DaysListActivity;
 import com.example.android.fitdiary.R;
 
+/*
+* ChooseActivity class - in this view user can choose which type of day will be considered
+* */
 public class ChooseActivity extends AppCompatActivity {
     private TextView diet;
     private TextView workout;
@@ -17,7 +20,6 @@ public class ChooseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
-
         loadViews();
         setListeners();
 
@@ -28,6 +30,9 @@ public class ChooseActivity extends AppCompatActivity {
         workout = findViewById(R.id.workout);
     }
 
+
+    /* click on button workout means you choose trainingDay as a type of day in dayslistActivity and send type "wokruout as" information  about that*/
+    /* click on button diet means you choose DietDay as a type of day in dayslistActivity and send type "diet" as information  about that*/
     private void setListeners() {
         workout.setOnClickListener(new View.OnClickListener() {
             @Override

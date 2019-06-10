@@ -10,6 +10,9 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* Presenter that delivered data to chart in order to show it to user
+* */
 public class PieChartPresenter {
     private List<Food> food;
     private PieDataSet dataSet;
@@ -33,7 +36,10 @@ public class PieChartPresenter {
         return food;
     }
 
-    public int computeeKcal() {
+    /*
+    * computing total amount of kcal in one day
+    * */
+    private int computeeKcal() {
         int kcal = 0;
         for (int i = 0; i < food.size(); i++) {
             kcal += food.get(i).getKcal();
@@ -41,12 +47,17 @@ public class PieChartPresenter {
         return kcal;
     }
 
+
     public void setChart() {
         macrosList(computeMacros());
         titles();
     }
 
-    public MacroComponents computeMacros() {
+
+    /*
+    * computing total amount of each macro component
+    * */
+    private MacroComponents computeMacros() {
         float protein = 0;
         float fat = 0;
         float carbs = 0;
@@ -60,8 +71,11 @@ public class PieChartPresenter {
         return new MacroComponents(carbs, protein, fat);
     }
 
-    public void macrosList(MacroComponents macroComponents) {
-        ArrayList macros = new ArrayList();
+    /*
+    * loading data to chart a
+    * */
+    private void macrosList(MacroComponents macroComponents) {
+        ArrayList<Entry> macros = new ArrayList<>();
         macros.add(new Entry(macroComponents.getCarbohydrates(), 0));
         macros.add(new Entry(macroComponents.getProtein(), 1));
         macros.add(new Entry(macroComponents.getFat(), 2));
@@ -70,8 +84,11 @@ public class PieChartPresenter {
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
     }
 
-    public void titles() {
-        ArrayList titles = new ArrayList();
+    /*
+    * setting titles for each colour which will be shown on diagram
+    * */
+    private void titles() {
+        ArrayList<String> titles = new ArrayList<>();
         titles.add("carbohydrates");
         titles.add("protein");
         titles.add("fat");

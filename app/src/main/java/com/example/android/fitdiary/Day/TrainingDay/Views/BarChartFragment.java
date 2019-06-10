@@ -1,6 +1,7 @@
 package com.example.android.fitdiary.Day.TrainingDay.Views;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,10 @@ import com.github.mikephil.charting.charts.BarChart;
 
 import java.util.List;
 
+/*
+ * Fragment using to show bar chart
+ * */
+
 public class BarChartFragment extends BaseFragment implements BarChartPresenter.Iview {
 
     private BarChart barChart;
@@ -23,7 +28,7 @@ public class BarChartFragment extends BaseFragment implements BarChartPresenter.
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_bar_chart, container, false);
         barChart = v.findViewById(R.id.barchart);

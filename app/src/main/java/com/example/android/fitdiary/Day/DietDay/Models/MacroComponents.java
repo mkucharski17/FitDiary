@@ -1,5 +1,9 @@
 package com.example.android.fitdiary.Day.DietDay.Models;
 
+
+/*
+* class represents macro components
+* */
 public class MacroComponents {
 
     // values per 100g
@@ -13,7 +17,7 @@ public class MacroComponents {
         this.fat = fat;
     }
 
-    public MacroComponents() {
+    MacroComponents() {
     }
 
     public float getCarbohydrates() {

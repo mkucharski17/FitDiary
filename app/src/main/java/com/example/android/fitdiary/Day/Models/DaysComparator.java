@@ -4,6 +4,10 @@ import com.example.android.fitdiary.Day.Models.Day;
 
 import java.util.Comparator;
 
+
+/*
+* class created to compare Days considered date
+* */
 public class DaysComparator implements Comparator<Day> {
 
     @Override

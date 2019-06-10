@@ -12,6 +12,10 @@ import com.example.android.fitdiary.Signing.Presenters.SigningPresenter;
 import com.example.android.fitdiary.Views.ChooseActivity;
 import com.example.android.fitdiary.R;
 
+/*
+* SigningINActivity - class using to sign in User in app
+* */
+
 
 public class SigningInActivity extends AppCompatActivity implements SigningPresenter.IView {
     private Button register;

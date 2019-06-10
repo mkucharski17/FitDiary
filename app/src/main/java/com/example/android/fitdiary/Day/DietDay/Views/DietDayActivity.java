@@ -9,16 +9,21 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.example.android.fitdiary.Day.Views.DayActivity;
-import com.example.android.fitdiary.Day.Presenters.DayPresenter;
+
 import com.example.android.fitdiary.Day.Views.DaysListActivity;
 import com.example.android.fitdiary.Day.DietDay.Presenters.DietDayPresenter;
 import com.example.android.fitdiary.Day.DietDay.Models.Food;
+import com.example.android.fitdiary.Presenters.BasePresenter;
 import com.example.android.fitdiary.R;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class DietDayActivity extends DayActivity implements DayPresenter.Iview, Serializable, FillFoodFragment.callBack {
+/*
+* Activity using by user to check list of food eaten in one day
+* */
+
+public class DietDayActivity extends DayActivity implements BasePresenter.Iview, Serializable, FillFoodFragment.callBack {
     private DietDayPresenter presenter;
     private ArrayAdapter<Food> adapter;
 
@@ -26,9 +31,9 @@ public class DietDayActivity extends DayActivity implements DayPresenter.Iview, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setText("add food", "delete this day");
+        setText("add food");
         Bundle extra = getIntent().getExtras();
-        Date date = (Date) extra.get("day");
+        Date date = (Date) extra.get("day");                     //getting day selected in DaysListActivity
         presenter = new DietDayPresenter(this, date);
         presenter.read();
     }
@@ -60,7 +65,7 @@ public class DietDayActivity extends DayActivity implements DayPresenter.Iview, 
             public void onClick(View v) {
                 presenter.deleteDay();
                 Intent dietIntent = new Intent(DietDayActivity.this, DaysListActivity.class);
-                dietIntent.putExtra("type", "diet");
+                dietIntent.putExtra("type", "diet");          //send type of day to next Activity
                 startActivity(dietIntent);
             }
         });
@@ -73,7 +78,10 @@ public class DietDayActivity extends DayActivity implements DayPresenter.Iview, 
         });
     }
 
-    protected void openAddFragment() {
+    /*
+    * open AddFoodFragment and send list of all food created by user
+    * */
+    private void openAddFragment() {
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -87,6 +95,9 @@ public class DietDayActivity extends DayActivity implements DayPresenter.Iview, 
         transaction.commit();
     }
 
+    /*
+    * this method opens Fragment with chart, and send data which will be shown on diagram
+    * */
     private void openPieCHartFragment() {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -101,6 +112,10 @@ public class DietDayActivity extends DayActivity implements DayPresenter.Iview, 
 
     }
 
+
+    /*
+    * opening FillFoodFragment and send food to fill
+    * */
     private void openFillFoodFragment(Food f) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();

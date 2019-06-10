@@ -5,20 +5,25 @@ import android.util.Log;
 
 import com.example.android.fitdiary.Firebase.Dao;
 import com.example.android.fitdiary.Day.TrainingDay.Models.Exercise;
+import com.example.android.fitdiary.Presenters.BasePresenter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 
 import static android.support.constraint.Constraints.TAG;
 
-public class FillExercisePresenter {
+
+/*
+*
+* FillExercisePresenter - class that mans FillExerciseActivity
+* */
+public class FillExercisePresenter extends BasePresenter {
     private Exercise exercise;
     private boolean New;
     private IView iView;
-    private Dao dao;
-    private FirebaseAuth mAuth;
 
     public FillExercisePresenter(IView iView) {
+        super();
         this.iView = iView;
         dao = new Dao();
         mAuth = FirebaseAuth.getInstance();
@@ -40,6 +45,10 @@ public class FillExercisePresenter {
         New = aNew;
     }
 
+
+    /*
+    * adding new created exercise to list of exercises
+    * */
     public void saveNewExercise() {
         dao.getDatabase().collection("users")
                 .document(mAuth.getCurrentUser().getUid()).collection("exercises")

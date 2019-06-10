@@ -26,12 +26,16 @@ public class FillFoodFragment extends BaseFragment implements FillFoodPresenter.
     private Button deleteFromList;
 
 
+    /*
+    * Fragment created to set macros and portion of new food
+    * */
     public FillFoodFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        assert getArguments() != null;
         callBack = (callBack) getArguments().getSerializable("bundle");
         View v = inflater.inflate(R.layout.fragment_fill_food, container, false);
         loadViews(v);
@@ -60,6 +64,10 @@ public class FillFoodFragment extends BaseFragment implements FillFoodPresenter.
 
     }
 
+    /*
+     * set info about macros from editTexts
+     * */
+
     public void setInfo() {
         presenter.getFood().setName(name.getText().toString());
         presenter.getFood().getMacroComponents().setCarbohydrates(Float.parseFloat(carbohydrates.getText().toString()));
@@ -69,6 +77,10 @@ public class FillFoodFragment extends BaseFragment implements FillFoodPresenter.
         presenter.getFood().computeKcal();
     }
 
+
+    /*
+     * setting text of editText objects
+     * */
     public void setTexts() {
         name.setText(presenter.getFood().getName());
         carbohydrates.setText(Float.toString(presenter.getFood().getMacroComponents().getCarbohydrates()));

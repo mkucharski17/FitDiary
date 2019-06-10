@@ -1,7 +1,13 @@
 package com.example.android.fitdiary.Day.TrainingDay.Models;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
+
+/*
+* Exercise - class represents one exercise form workout
+* */
 public class Exercise implements Serializable {
     private String name;
     private int sets;
@@ -43,6 +49,10 @@ public class Exercise implements Serializable {
         this.reps = reps;
     }
 
+    /*
+    * to String method for arrayAdapter
+    * */
+    @NonNull
     public String toString() {
         return (name + "  " + sets + "x" + reps + "  " + weight + "kg");
 

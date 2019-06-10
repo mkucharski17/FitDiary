@@ -17,9 +17,9 @@ import com.example.android.fitdiary.R;
 
 import java.util.Date;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+/*
+* AddDayFragment is a view that allows user to choose day from calendar view
+* */
 public class AddDayFragment extends Fragment implements AddDayPresenter.IView {
     private AddDayPresenter presenter;
     private CallBack click;
@@ -27,20 +27,23 @@ public class AddDayFragment extends Fragment implements AddDayPresenter.IView {
     private Button ok;
 
 
-    public AddDayFragment() {
-        // Required empty public constructor
-    }
+    public AddDayFragment() { }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        assert getArguments() != null;
         click = (CallBack) getArguments().getSerializable("bundle");
         View v = inflater.inflate(R.layout.fragment_add_date, container, false);
-        date = v.findViewById(R.id.calendar);
-        ok = v.findViewById(R.id.ok);
+        loadViews(v);
         loadPresenter(getArguments().getString("type"));
         setListeners();
         return v;
+    }
+
+    private void loadViews(View v){
+        date = v.findViewById(R.id.calendar);
+        ok = v.findViewById(R.id.ok);
     }
 
 
@@ -67,6 +70,7 @@ public class AddDayFragment extends Fragment implements AddDayPresenter.IView {
 
     private void close() {
         FragmentManager manager = getFragmentManager();
+        assert manager != null;
         manager.popBackStack();
     }
 

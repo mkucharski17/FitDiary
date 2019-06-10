@@ -3,9 +3,10 @@ package com.example.android.fitdiary.Day.DietDay.Presenters;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.android.fitdiary.Day.Presenters.DayPresenter;
+
 import com.example.android.fitdiary.Day.DietDay.Models.DietDay;
 import com.example.android.fitdiary.Day.DietDay.Models.Food;
+import com.example.android.fitdiary.Presenters.BasePresenter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -21,8 +22,10 @@ import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
 
-
-public class DietDayPresenter extends DayPresenter {
+/*
+* DietDayPresenter - presenter for DietDayActivity
+* */
+public class DietDayPresenter extends BasePresenter {
     private DietDay day;
     private List<Food> allFoodList;
     private Iview iview;
@@ -39,6 +42,8 @@ public class DietDayPresenter extends DayPresenter {
         day.getFood().remove(f);
     }
 
+
+    // Add food to list of user's food if it wasn't there earlier
     public void addFood(Food f, boolean isNew) {
         if (isNew)
             allFoodList.add(f);
@@ -53,12 +58,20 @@ public class DietDayPresenter extends DayPresenter {
         return allFoodList;
     }
 
+     /*
+     * method which read diet day from Firebase Firestore
+     * */
     public void read() {
 
+        /*
+        * localize document
+        * */
         DocumentReference docRef = dao.getDatabase().collection("users")
                 .document(mAuth.getCurrentUser().getUid()).collection("dietdays")
                 .document(day.toString());
-
+        /*
+        * get document and set day of this presenter
+        * */
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -81,8 +94,10 @@ public class DietDayPresenter extends DayPresenter {
     }
 
 
+    /*
+    * getting all food list from data base
+    * */
     private void readAllFoodList() {
-
         dao.getDatabase().collection("users").document(mAuth.getCurrentUser().getUid())
                 .collection("food")
                 .get()
@@ -97,7 +112,9 @@ public class DietDayPresenter extends DayPresenter {
                     }
                 });
     }
-
+    /*
+    * delete particular food from list of user's food
+    * */
     public void deleteItemOfAllFoodList(Food f) {
 
         dao.getDatabase().collection("users").document(mAuth.getCurrentUser().getUid())
@@ -119,7 +136,9 @@ public class DietDayPresenter extends DayPresenter {
 
     }
 
-
+    /*
+    * save current day
+    * */
     public void saveDay() {
 
         dao.getDatabase().collection("users")
@@ -139,6 +158,10 @@ public class DietDayPresenter extends DayPresenter {
                     }
                 });
     }
+
+    /*
+     * delete current day
+     * */
 
     public void deleteDay() {
 

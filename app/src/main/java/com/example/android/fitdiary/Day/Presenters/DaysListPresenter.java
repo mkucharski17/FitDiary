@@ -8,6 +8,7 @@ import com.example.android.fitdiary.Day.DietDay.Views.DietDayActivity;
 import com.example.android.fitdiary.Day.Models.Day;
 import com.example.android.fitdiary.Day.TrainingDay.Views.TrainingDayActivity;
 import com.example.android.fitdiary.Day.Models.DaysComparator;
+import com.example.android.fitdiary.Presenters.BasePresenter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,18 +21,21 @@ import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
 
+/*
+* DaysListPresenter - main goal of this class is to man DaysListActivity
+*
+* */
 
-public class DaysListPresenter {
+
+public class DaysListPresenter  extends BasePresenter {
     private List<Day> DaysList;
     private IView iview;
     private String type;
-    private Dao dao;
-    private FirebaseAuth mAuth;
+
 
     public DaysListPresenter(IView iview, String type) {
+        super();
         DaysList = new ArrayList<>();
-        dao = new Dao();
-        mAuth = FirebaseAuth.getInstance();
         this.type = type;
         this.iview = iview;
     }
@@ -56,6 +60,9 @@ public class DaysListPresenter {
         return TrainingDayActivity.class;
     }
 
+    /*
+    * delete whole list of user's days of particular type
+    * */
     public void deleteList() {
 
         for (int i = 0; i < DaysList.size(); i++) {
@@ -79,7 +86,9 @@ public class DaysListPresenter {
 
     }
 
-
+    /*
+    * reading list of  days, adding them to list and at the end sort list
+    * */
     public void read() {
         iview.showProgressDialog();
 

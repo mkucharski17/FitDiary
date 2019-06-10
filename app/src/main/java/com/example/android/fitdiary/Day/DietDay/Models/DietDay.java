@@ -5,9 +5,11 @@ import com.example.android.fitdiary.Day.Models.Day;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+/*
+* DietDay - class represnts diet day
+* */
 public class DietDay extends Day {
-    private List<Food> food;
+    private List<Food> food;   // food which you can save in day
 
     public DietDay() {
         super();

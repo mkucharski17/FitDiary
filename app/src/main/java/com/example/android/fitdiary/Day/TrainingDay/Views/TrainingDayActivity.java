@@ -9,16 +9,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.example.android.fitdiary.Day.Views.DayActivity;
-import com.example.android.fitdiary.Day.Presenters.DayPresenter;
 import com.example.android.fitdiary.Day.Views.DaysListActivity;
 import com.example.android.fitdiary.Day.TrainingDay.Models.Exercise;
 import com.example.android.fitdiary.Day.TrainingDay.Presenters.TrainingDayPresenter;
+import com.example.android.fitdiary.Presenters.BasePresenter;
 import com.example.android.fitdiary.R;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class TrainingDayActivity extends DayActivity implements DayPresenter.Iview, Serializable, FillExerciseFragment.callBack {
+public class TrainingDayActivity extends DayActivity implements BasePresenter.Iview, Serializable, FillExerciseFragment.callBack {
     private TrainingDayPresenter presenter;
     private ArrayAdapter<Exercise> adapter;
 
@@ -26,8 +26,9 @@ public class TrainingDayActivity extends DayActivity implements DayPresenter.Ivi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setText("add exercise", "delete this day");
+        setText("add exercise");
         Bundle extra = getIntent().getExtras();
+        assert extra != null;
         Date date = (Date) extra.get("day");
         presenter = new TrainingDayPresenter(this, date);
         presenter.read();

@@ -1,6 +1,7 @@
 package com.example.android.fitdiary.Day.DietDay.Views;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,23 +15,23 @@ import com.github.mikephil.charting.components.Legend;
 
 import java.util.List;
 
+/*
+* Fragment using to show pie chart
+* */
 
 public class PieChartFragment extends BaseFragment implements PieChartPresenter.Iview {
     private PieChart pieChart;
     private PieChartPresenter presenter;
 
-    public PieChartFragment() {
-
-    }
+    public PieChartFragment() { }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_pie_chart, container, false);
         pieChart = v.findViewById(R.id.piechart);
         presenter = new PieChartPresenter(this, (List<Food>) getArguments().getSerializable("food"));
         presenter.setChart();
-
         loadPieChart();
         setLegend();
 
@@ -42,6 +43,7 @@ public class PieChartFragment extends BaseFragment implements PieChartPresenter.
         pieChart.setDescription(null);
         pieChart.animateXY(1000, 1000);
     }
+
 
     private void setLegend() {
         Legend l = pieChart.getLegend();

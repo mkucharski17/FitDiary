@@ -1,6 +1,7 @@
 package com.example.android.fitdiary.Day.TrainingDay.Views;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -18,6 +19,9 @@ import com.example.android.fitdiary.R;
 
 import java.util.List;
 
+/*
+ * Fragment using for adding workout to day
+ * */
 
 public class AddExerciseFragment extends BaseFragment implements AddExercisePresenter.IView {
     private ListView listView;
@@ -31,7 +35,7 @@ public class AddExerciseFragment extends BaseFragment implements AddExercisePres
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_list, container, false);
         presenter = new AddExercisePresenter(this, (List<Exercise>) getArguments().getSerializable("allExerciseList"));
@@ -54,7 +58,7 @@ public class AddExerciseFragment extends BaseFragment implements AddExercisePres
             public void onClick(View v) {
                 Exercise e = new Exercise();
                 close();
-                openFillFragment(e, true);
+                openFillExerciseFragment(e, true);
             }
         });
 
@@ -63,18 +67,22 @@ public class AddExerciseFragment extends BaseFragment implements AddExercisePres
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Exercise e = adapter.getItem(position);
                 close();
-                openFillFragment(e, false);
+                openFillExerciseFragment(e, false);
             }
         });
 
     }
-
-    private void openFillFragment(Exercise exercise, boolean New) {
+    /*
+     * opening FillExerciseFragment and sending bundle with exercises list to it
+     * */
+    private void openFillExerciseFragment(Exercise exercise, boolean New) {
         FragmentManager manager = getFragmentManager();
+        assert manager != null;
         FragmentTransaction transaction = manager.beginTransaction();
         Bundle bundle = new Bundle();
         bundle.putSerializable("exercise", exercise);
         bundle.putSerializable("new", New);
+        assert getArguments() != null;
         bundle.putSerializable("bundle", getArguments().getSerializable("bundle"));
         FillExerciseFragment fragment = new FillExerciseFragment();
         fragment.setArguments(bundle);
@@ -83,6 +91,10 @@ public class AddExerciseFragment extends BaseFragment implements AddExercisePres
         transaction.commit();
 
     }
+
+    /*
+     * hide button because otherwise it will be visible after closing fragment
+     * */
 
     public void hideDeleteButton() {
         delete.setVisibility(View.GONE);

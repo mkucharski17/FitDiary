@@ -1,7 +1,9 @@
 package com.example.android.fitdiary.Day.DietDay.Models;
 
 import java.io.Serializable;
-
+/*
+* Food - model class represents one comestible product
+ * */
 public class Food implements Serializable {
     private String name;
     private float portion;
@@ -36,11 +38,19 @@ public class Food implements Serializable {
         return macroComponents;
     }
 
+
+    /*
+    * computing kcal from  using Components and portion
+    * */
     public void computeKcal() {
         Kcal = (int) ((macroComponents.getCarbohydrates() * 4 + macroComponents.getProtein() * 4 +
                 macroComponents.getFat() * 9) * portion);
     }
 
+
+    /*
+    * toString method created in order to being used by  arrayAdapter
+    * */
     public String toString() {
         computeKcal();
         return name + " " + (int) (portion * 100) + "g " + Kcal + " Kcal";

@@ -5,15 +5,20 @@ import com.example.android.fitdiary.Day.DietDay.Models.Food;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* Presenter for AddfoodActivity class
+* */
+
 public class AddFoodPresenter {
 
     private IView iview;
     private List<Food> allFoodList;
 
+
     public AddFoodPresenter(IView iview, List<Food> list) {
         this.iview = iview;
         allFoodList = new ArrayList<>();
-        if (list != null)
+        if (list != null)               //loading list if it is not empty
             allFoodList.addAll(list);
     }
 

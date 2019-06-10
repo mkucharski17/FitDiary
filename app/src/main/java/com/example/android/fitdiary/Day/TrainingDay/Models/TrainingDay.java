@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/*
+* TrainingDay - class represents one training day, extends day by List of exercises
+* */
 public class TrainingDay extends Day {
     private List<Exercise> exercises;
 

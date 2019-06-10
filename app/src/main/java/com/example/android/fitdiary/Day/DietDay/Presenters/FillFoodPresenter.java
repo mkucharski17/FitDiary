@@ -5,24 +5,28 @@ import android.util.Log;
 
 import com.example.android.fitdiary.Firebase.Dao;
 import com.example.android.fitdiary.Day.DietDay.Models.Food;
+import com.example.android.fitdiary.Presenters.BasePresenter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 
 import static android.support.constraint.Constraints.TAG;
 
-public class FillFoodPresenter {
+
+/*
+ * presenter which man FillFoodactivity
+ */
+
+public class FillFoodPresenter extends BasePresenter {
 
     private Food food;
     private boolean New;
     private IView iView;
-    private Dao dao;
-    private FirebaseAuth mAuth;
 
     public FillFoodPresenter(IView iView) {
+        super();
         this.iView = iView;
-        dao = new Dao();
-        mAuth = FirebaseAuth.getInstance();
+
     }
 
     public Food getFood() {
@@ -41,6 +45,9 @@ public class FillFoodPresenter {
         New = aNew;
     }
 
+    /*
+    * save new product created by user
+    * */
     public void saveNewFood() {
         dao.getDatabase().collection("users")
                 .document(mAuth.getCurrentUser().getUid()).collection("food")

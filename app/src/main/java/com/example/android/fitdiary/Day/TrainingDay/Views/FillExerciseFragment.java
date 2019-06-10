@@ -1,6 +1,8 @@
 package com.example.android.fitdiary.Day.TrainingDay.Views;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +31,7 @@ public class FillExerciseFragment extends BaseFragment implements FillExercisePr
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         callBack = (callBack) getArguments().getSerializable("bundle");
         View v = inflater.inflate(R.layout.fragment_fill_exercise, container, false);
@@ -42,6 +44,7 @@ public class FillExerciseFragment extends BaseFragment implements FillExercisePr
 
     public void loadPresenter() {
         presenter = new FillExercisePresenter(this);
+        assert getArguments() != null;
         presenter.setNew((boolean) getArguments().get("new"));
         presenter.setExercise((Exercise) getArguments().get("exercise"));
 
@@ -59,6 +62,9 @@ public class FillExerciseFragment extends BaseFragment implements FillExercisePr
 
     }
 
+    /*
+     * set info about exercise from editTexts
+     * */
     public void setInfo() {
         presenter.getExercise().setName(name.getText().toString());
         presenter.getExercise().setSets(Integer.parseInt(sets.getText().toString()));
@@ -66,6 +72,10 @@ public class FillExerciseFragment extends BaseFragment implements FillExercisePr
         presenter.getExercise().setWeight(Integer.parseInt(weight.getText().toString()));
     }
 
+    /*
+     * setting text of editText objects
+     * */
+    @SuppressLint("SetTextI18n")
     public void setTexts() {
         name.setText(presenter.getExercise().getName());
         sets.setText(Integer.toString(presenter.getExercise().getSets()));

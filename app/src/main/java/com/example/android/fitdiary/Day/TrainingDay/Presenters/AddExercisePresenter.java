@@ -5,6 +5,10 @@ import com.example.android.fitdiary.Day.TrainingDay.Models.Exercise;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* AddExercisePresenter - presenter for AddExercise class
+* */
+
 public class AddExercisePresenter {
     private IView iview;
     private List<Exercise> allExercisesList;

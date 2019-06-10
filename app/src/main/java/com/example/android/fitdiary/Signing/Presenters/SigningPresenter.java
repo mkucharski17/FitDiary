@@ -9,7 +9,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import static android.support.constraint.Constraints.TAG;
-
+/*
+* SigningPresenter - communicate Firebase and app i order to create and sign in user
+* */
 public class SigningPresenter {
     private FirebaseAuth mAuth;
     private IView iview;
@@ -20,6 +22,9 @@ public class SigningPresenter {
         mAuth = FirebaseAuth.getInstance();
     }
 
+    /*
+    * create user with emial and password with Firebase
+    * */
     public void signUp(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -37,6 +42,10 @@ public class SigningPresenter {
                     }
                 });
     }
+
+    /*
+     * sign in  user with emial and password with Firebase
+     * */
 
     public void signIn(String email, String password) {
 

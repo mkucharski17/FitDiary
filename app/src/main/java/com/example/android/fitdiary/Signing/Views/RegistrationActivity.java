@@ -12,6 +12,10 @@ import android.widget.Toast;
 import com.example.android.fitdiary.R;
 import com.example.android.fitdiary.Signing.Presenters.SigningPresenter;
 
+/*
+ * RegistratioActivity - class using to sign up User in app
+ * */
+
 public class RegistrationActivity extends AppCompatActivity implements SigningPresenter.IView {
     private EditText email;
     private EditText password;

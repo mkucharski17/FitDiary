@@ -1,6 +1,7 @@
 package com.example.android.fitdiary.Day.Views;
 
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,10 @@ import com.example.android.fitdiary.R;
 import java.io.Serializable;
 
 
+/*
+* DaysListActivity - Activity that shows list of days belongs to user
+* */
+
 public class DaysListActivity extends AppCompatActivity implements AddDayFragment.CallBack, Serializable, DaysListPresenter.IView {
 
     private DaysListPresenter presenter;
@@ -35,18 +40,23 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         loadPresenter();
-        loadProgrssDialog();
+        loadProgresDialog();
         presenter.read();
 
     }
 
     private void loadPresenter() {
         Bundle extra = getIntent().getExtras();
+        assert extra != null;
         String type = extra.getString("type");
         presenter = new DaysListPresenter(this, type);
     }
 
 
+
+    /*
+    * opening AddDayFragment and sending type of presenters which is also type of days
+    * */
     private void openFragment() {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -61,6 +71,7 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
     }
 
 
+    @SuppressLint("SetTextI18n")
     public void loadViews() {
         addDay = findViewById(R.id.add);
         addDay.setText("add day");
@@ -98,13 +109,16 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Day day = adapter.getItem(position);
                 Intent intent = new Intent(DaysListActivity.this, presenter.getDestinationClass());
+                assert day != null;
                 intent.putExtra("day", day.getDate());
                 startActivity(intent);
             }
         });
     }
-
-    public void loadProgrssDialog() {
+    /*
+    * load progressing bar which is showing when presenter reads data from data base
+    * */
+    public void loadProgresDialog() {
         dialog = new ProgressDialog(this);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setTitle("Loading");
@@ -119,7 +133,6 @@ public class DaysListActivity extends AppCompatActivity implements AddDayFragmen
 
     public void hideProgressDialog() {
         dialog.dismiss();
-
     }
 
     @Override

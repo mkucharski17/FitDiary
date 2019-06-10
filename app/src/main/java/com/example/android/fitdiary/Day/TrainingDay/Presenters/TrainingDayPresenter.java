@@ -3,9 +3,10 @@ package com.example.android.fitdiary.Day.TrainingDay.Presenters;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.android.fitdiary.Day.Presenters.DayPresenter;
+
 import com.example.android.fitdiary.Day.TrainingDay.Models.Exercise;
 import com.example.android.fitdiary.Day.TrainingDay.Models.TrainingDay;
+import com.example.android.fitdiary.Presenters.BasePresenter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -22,7 +23,10 @@ import java.util.List;
 import static android.support.constraint.Constraints.TAG;
 
 
-public class TrainingDayPresenter extends DayPresenter {
+/*
+ * TrainingDayPresenter - presenter for TrainingDayActivity
+ * */
+public class TrainingDayPresenter extends BasePresenter {
     private TrainingDay day;
     private List<Exercise> allExercisesList;
     private Iview iview;
@@ -42,6 +46,7 @@ public class TrainingDayPresenter extends DayPresenter {
         day.getExercises().remove(e);
     }
 
+    // Add food to list of user's food if it wasn't there earlier
     public void addExercise(Exercise e, boolean isNew) {
         if (isNew)
             allExercisesList.add(e);
@@ -52,17 +57,24 @@ public class TrainingDayPresenter extends DayPresenter {
         return day;
     }
 
+    /*
+     * method which read training day from Firebase Firestore
+     * */
     public void read() {
 
         DocumentReference docRef = dao.getDatabase().collection("users")
                 .document(mAuth.getCurrentUser().getUid()).collection("workoutdays")
                 .document(day.toString());
 
+        /*
+         * get document and set day of this presenter
+         * */
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
+                    assert document != null;
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         day = document.toObject(TrainingDay.class);
@@ -79,7 +91,9 @@ public class TrainingDayPresenter extends DayPresenter {
         readAllExercsiesList();
     }
 
-
+    /*
+     * getting all exercises list from data base
+     * */
     private void readAllExercsiesList() {
 
         dao.getDatabase().collection("users").document(mAuth.getCurrentUser().getUid())
@@ -97,6 +111,9 @@ public class TrainingDayPresenter extends DayPresenter {
                 });
     }
 
+    /*
+     * delete particular food from list of user's food
+     * */
     public void deleteItemOfAllExerciseList(Exercise e) {
 
         dao.getDatabase().collection("users").document(mAuth.getCurrentUser().getUid())
@@ -118,7 +135,9 @@ public class TrainingDayPresenter extends DayPresenter {
 
     }
 
-
+    /*
+     * save current day
+     * */
     public void saveDay() {
 
         dao.getDatabase().collection("users")
@@ -139,6 +158,10 @@ public class TrainingDayPresenter extends DayPresenter {
                 });
     }
 
+
+    /*
+     * delete current day
+     * */
     public void deleteDay() {
 
         dao.getDatabase().collection("users").document(mAuth.getCurrentUser().getUid())

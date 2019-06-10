@@ -1,15 +1,20 @@
 package com.example.android.fitdiary.Day.Views;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.android.fitdiary.Day.Presenters.DayPresenter;
+import com.example.android.fitdiary.Presenters.BasePresenter;
 import com.example.android.fitdiary.R;
 
+/*
+* DayActivity class - this is base class for TrainingDayActivity and DietDayActivity
+*
+* */
 
-public abstract class DayActivity extends AppCompatActivity implements DayPresenter.Iview {
+public abstract class DayActivity extends AppCompatActivity implements BasePresenter.Iview {
     protected Button add;
     protected Button delete;
     protected Button chart;
@@ -28,9 +33,10 @@ public abstract class DayActivity extends AppCompatActivity implements DayPresen
         chart = findViewById(R.id.chart);
     }
 
-    protected void setText(String add, String delete) {
+    @SuppressLint("SetTextI18n")
+    protected void setText(String add) {
         this.add.setText(add);
-        this.delete.setText(delete);
+        this.delete.setText("delete this day");
     }
 
 }

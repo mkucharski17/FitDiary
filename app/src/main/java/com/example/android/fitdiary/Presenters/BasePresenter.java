@@ -1,16 +1,24 @@
-package com.example.android.fitdiary.Day.Presenters;
+package com.example.android.fitdiary.Presenters;
+
 
 
 import com.example.android.fitdiary.Firebase.Dao;
 import com.google.firebase.auth.FirebaseAuth;
 
-public abstract class DayPresenter {
+/*
+ * Base class for number of presenters
+ * */
+
+public abstract class BasePresenter {
     protected Iview iview;
     protected Dao dao;
     protected FirebaseAuth mAuth;
 
 
-    public DayPresenter() {
+    /*
+     * initializing database object and Authentication reference
+     * */
+    public BasePresenter() {
         dao = new Dao();
         mAuth = FirebaseAuth.getInstance();
     }

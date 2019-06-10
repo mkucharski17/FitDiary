@@ -1,6 +1,7 @@
 package com.example.android.fitdiary.Day.DietDay.Views;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -19,6 +20,10 @@ import com.example.android.fitdiary.R;
 import java.util.List;
 
 
+/*
+* Fragment using for adding food to day
+* */
+
 public class AddFoodFragment extends BaseFragment implements AddFoodPresenter.IView {
     private ListView listView;
     private ArrayAdapter<Food> adapter;
@@ -31,20 +36,27 @@ public class AddFoodFragment extends BaseFragment implements AddFoodPresenter.IV
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_list, container, false);
         presenter = new AddFoodPresenter(this, (List<Food>) getArguments().getSerializable("allFoodList"));
+        loadViews(v);
+        loadAdapter();
+        hideDeleteButton();
+        setListeners();
+        return v;
+    }
+
+    private void loadViews(View v){
         listView = v.findViewById(R.id.list);
         delete = v.findViewById(R.id.delete);
-        hideDeleteButton();
         newFood = v.findViewById(R.id.add);
         newFood.setText("create new food");
+    }
+
+    private void loadAdapter(){
         adapter = new ArrayAdapter<>(getActivity(), R.layout.list_item, presenter.getAllFoodList());
         listView.setAdapter(adapter);
-        setListeners();
-
-        return v;
     }
 
 
@@ -69,12 +81,18 @@ public class AddFoodFragment extends BaseFragment implements AddFoodPresenter.IV
 
     }
 
+    /*
+    * opening FillFoodFragment and sending bundle with food list to it
+    * */
+
     private void openFillFoodFragment(Food f, boolean New) {
         FragmentManager manager = getFragmentManager();
+        assert manager != null;
         FragmentTransaction transaction = manager.beginTransaction();
         Bundle bundle = new Bundle();
         bundle.putSerializable("food", f);
         bundle.putSerializable("new", New);
+        assert getArguments() != null;
         bundle.putSerializable("bundle", getArguments().getSerializable("bundle"));
         FillFoodFragment fragment = new FillFoodFragment();
         fragment.setArguments(bundle);
@@ -84,6 +102,9 @@ public class AddFoodFragment extends BaseFragment implements AddFoodPresenter.IV
 
     }
 
+    /*
+    * hide button because otherwise it will be visible after closing fragment
+    * */
     public void hideDeleteButton() {
         delete.setVisibility(View.GONE);
     }
