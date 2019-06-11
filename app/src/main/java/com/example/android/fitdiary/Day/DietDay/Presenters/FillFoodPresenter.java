@@ -26,7 +26,6 @@ public class FillFoodPresenter extends BasePresenter {
     public FillFoodPresenter(IView iView) {
         super();
         this.iView = iView;
-
     }
 
     public Food getFood() {
@@ -41,8 +40,11 @@ public class FillFoodPresenter extends BasePresenter {
         return New;
     }
 
-    public void setNew(boolean aNew) {
-        New = aNew;
+    public void setNew(boolean New) {
+        this.New = New;
+        if(New)
+            iView.hideButtons();
+
     }
 
     /*
@@ -70,6 +72,7 @@ public class FillFoodPresenter extends BasePresenter {
 
 
     public interface IView {
+        void hideButtons();
 
     }
 }

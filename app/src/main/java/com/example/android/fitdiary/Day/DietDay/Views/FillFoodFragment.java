@@ -1,5 +1,6 @@
 package com.example.android.fitdiary.Day.DietDay.Views;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,7 @@ import com.example.android.fitdiary.Day.DietDay.Models.Food;
 import com.example.android.fitdiary.Views.BaseFragment;
 import com.example.android.fitdiary.R;
 
-public class FillFoodFragment extends BaseFragment implements FillFoodPresenter.IView {
+public class FillFoodFragment extends BaseFragment implements FillFoodPresenter.IView{
 
     private callBack callBack;
     private FillFoodPresenter presenter;
@@ -40,7 +41,7 @@ public class FillFoodFragment extends BaseFragment implements FillFoodPresenter.
         View v = inflater.inflate(R.layout.fragment_fill_food, container, false);
         loadViews(v);
         loadPresenter();
-        setListener();
+        setListeners();
         setTexts();
         return v;
     }
@@ -61,7 +62,6 @@ public class FillFoodFragment extends BaseFragment implements FillFoodPresenter.
         ok = v.findViewById(R.id.ok);
         deleteThis = v.findViewById(R.id.deleteThis);
         deleteFromList = v.findViewById(R.id.deleteAll);
-
     }
 
     /*
@@ -81,6 +81,7 @@ public class FillFoodFragment extends BaseFragment implements FillFoodPresenter.
     /*
      * setting text of editText objects
      * */
+    @SuppressLint("SetTextI18n")
     public void setTexts() {
         name.setText(presenter.getFood().getName());
         carbohydrates.setText(Float.toString(presenter.getFood().getMacroComponents().getCarbohydrates()));
@@ -90,7 +91,7 @@ public class FillFoodFragment extends BaseFragment implements FillFoodPresenter.
 
     }
 
-    public void setListener() {
+    public void setListeners() {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,8 +119,11 @@ public class FillFoodFragment extends BaseFragment implements FillFoodPresenter.
                 close();
             }
         });
+    }
 
-
+    public void hideButtons(){
+        deleteThis.setVisibility(View.GONE);
+        deleteFromList.setVisibility(View.GONE);
     }
 
     public interface callBack {

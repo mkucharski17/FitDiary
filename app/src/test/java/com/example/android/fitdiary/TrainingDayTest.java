@@ -25,5 +25,4 @@ public class TrainingDayTest {
         e.setSets(4);
         assertEquals("push up" + "  " + 4+ "x" + 2 + "  " + 25 + "kg",e.toString());
     }
-    
 }

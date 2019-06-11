@@ -120,17 +120,20 @@ public class TrainingDayActivity extends DayActivity implements BasePresenter.Iv
     public void addExercise(Exercise e, boolean isNew) {
         presenter.addExercise(e, isNew);
         presenter.saveDay();
+        adapter.notifyDataSetChanged();
     }
 
 
     public void deleteExercise(Exercise e) {
         presenter.getDay().getExercises().remove(e);
         presenter.saveDay();
+        adapter.notifyDataSetChanged();
     }
 
     public void removeExerciseFromList(Exercise e) {
         presenter.getAllExercisesList().remove(e);
         presenter.deleteItemOfAllExerciseList(e);
+        adapter.notifyDataSetChanged();
     }
 
 }

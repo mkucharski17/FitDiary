@@ -133,16 +133,19 @@ public class DietDayActivity extends DayActivity implements BasePresenter.Iview,
     public void addFood(Food f, boolean isNew) {
         presenter.addFood(f, isNew);
         presenter.saveDay();
+        adapter.notifyDataSetChanged();
     }
 
 
     public void deleteFood(Food f) {
         presenter.getDay().getFood().remove(f);
         presenter.saveDay();
+        adapter.notifyDataSetChanged();
     }
 
     public void removeFoodFromList(Food f) {
         presenter.getAllFoodList().remove(f);
         presenter.deleteItemOfAllFoodList(f);
+        adapter.notifyDataSetChanged();
     }
 }

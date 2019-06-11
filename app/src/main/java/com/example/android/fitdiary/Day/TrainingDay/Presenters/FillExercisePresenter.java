@@ -41,8 +41,10 @@ public class FillExercisePresenter extends BasePresenter {
         return New;
     }
 
-    public void setNew(boolean aNew) {
-        New = aNew;
+    public void setNew(boolean New) {
+        this.New = New;
+        if(New)
+            iView.hideButtons();
     }
 
 
@@ -71,6 +73,7 @@ public class FillExercisePresenter extends BasePresenter {
 
 
     public interface IView {
+        void hideButtons();
 
     }
 }

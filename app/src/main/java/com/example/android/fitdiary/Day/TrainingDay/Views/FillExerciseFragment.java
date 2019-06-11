@@ -112,8 +112,11 @@ public class FillExerciseFragment extends BaseFragment implements FillExercisePr
                 close();
             }
         });
+    }
 
-
+    public void hideButtons(){
+        deleteThis.setVisibility(View.GONE);
+        deleteFromList.setVisibility(View.GONE);
     }
 
     public interface callBack {
