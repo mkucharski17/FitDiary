@@ -20,22 +20,19 @@ samo wygląda to w przypadku treningów
 ![rejestracja](images/Screenshot_2020-01-16-21-09-12.png)  
 * Można tworzyć własne produkty, nadając im odpowiednie makrosładniki oraz gramaturę. 
 Na podstawie tych danych aplikacja oblicza wartość energetyczną w kilokaloriach dostarczoną z danego produktu
-![rejestracja](images/Screenshot_2020-01-16-22-33-53.png  
+![rejestracja](images/Screenshot_2020-01-16-22-33-53.png)  
 * Produkty z danego dnia wyświetlają się w formie listy wraz z gramaturą i kaloryką poniżej mamy 
 przykład studenckiego dania buła z ketchupem
 ![rejestracja](images/Screenshot_2020-01-16-21-08-25.png)
 * Jest możliwość wyświetlania statystyk z jedzenia, czyli sumaryczną gramature dla każdego
 makroskładnika oraz kalorykę dnia w postaci wykresu kołowego, 
-![rejestracja](images/Screenshot_2020-01-16-21-08-25.png)
-
+![rejestracja](images/Screenshot_2020-01-16-21-08-31.png)
 * Analogicznie do posiłków z dnia wyświetlają się ćwiczenia z danego dnia. W liście widać 
 ilość powtórzeń, serii oraz ciężar w kg jakim bvyła wykonywana dana seria
 ![rejestracja](images/Screenshot_2020-01-16-21-10-36.png)
-
 * Można tworzyć nowe ćwiczenia, lub korzystać z wcześniej utowrzonych, jest też możliwość usunięcia 
 ćwiczenia, zarówno z listy ćwiczeń z danego dnia jak i z listy utowrzonyhc ćwiczeń przez danego użytkownika
 ![rejestracja](images/Screenshot_2020-01-16-21-10-58.png)
-
 * W przypadku treningów statystyki prezentowane są jako objętość treningowa dla każdego ćwiczenia, 
 przedstawiona na wykresie kolumnowym
 ![rejestracja](images/Screenshot_2020-01-16-21-11-08.png)
