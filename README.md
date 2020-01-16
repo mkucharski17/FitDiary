@@ -25,10 +25,12 @@ Aplikacja realizując takie funkcjonalności jak:
 * Można tworzyć własne produkty, nadając im odpowiednie makrosładniki oraz gramaturę. Na podstawie tych danych aplikacja oblicza wartość energetyczną w kilokaloriach dostarczoną z danego produktu
      ![rejestracja](images/Screenshot_2020-01-16-22-33-53.png
      
-* Produkty z danego dnia wyświetlają się w formie listy wraz z gramaturą i kaloryką poniżej mamy           przykład studenckiego dania buła z ketchupem
+* Produkty z danego dnia wyświetlają się w formie listy wraz z gramaturą i kaloryką poniżej mamy 
+przykład studenckiego dania buła z ketchupem
      ![rejestracja](images/Screenshot_2020-01-16-21-08-25.png)
      
-* Jest możliwość wyświetlania statystyk z jedzenia, czyli sumaryczną gramature dla każdego              makroskłądnika oraz kalorykę dnia w postaci wykresu kołowego, 
+* Jest możliwość wyświetlania statystyk z jedzenia, czyli sumaryczną gramature dla każdego
+makroskładnika oraz kalorykę dnia w postaci wykresu kołowego, 
      ![rejestracja](images/Screenshot_2020-01-16-21-08-25.png)
  
  * Analogicznie do posiłków z dnia wyświetlają się ćwiczenia z danego dnia. W liście widać ilość powtórzeń, serii oraz ciężar w kg jakim bvyła wykonywana dana seria
